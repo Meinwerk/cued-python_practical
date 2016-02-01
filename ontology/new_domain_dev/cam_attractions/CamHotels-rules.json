@@ -1,0 +1,102 @@
+{
+   "discourseAct":[
+      "ack",
+      "hello",
+      "none",
+      "repeat",
+      "silence",
+      "thankyou"
+   ],
+   "informable":{
+      "kind":[
+         "guesthouse",
+         "hotel"
+      ],
+      "name":[
+         "A and B Guest House",
+         "Acorn Guest House",
+         "Alexander Bed and Breakfast",
+         "Allenbell",
+         "Alpha-Milton Guest House",
+         "Arbury Lodge Guesthouse",
+         "Archway House",
+         "Ashley Hotel",
+         "Autumn House",
+         "Avalon",
+         "Aylesbray Lodge Guest House",
+         "Bridge Guest House",
+         "Carolina Bed and Breakfast",
+         "City Centre North B and B",
+         "Cityroomz",
+         "El Shaddai",
+         "Express by Holiday Inn Cambridge",
+         "Finches Bed and Breakfast",
+         "Gonville Hotel",
+         "Hamilton Lodge",
+         "Hobsons House",
+         "Home from Home",
+         "Huntingdon Marriott Hotel",
+         "Kirkwood House",
+         "Leverton House",
+         "Limehouse",
+         "Lovell Lodge",
+         "Rosa's Bed and Breakfast",
+         "The Cambridge Belfry",
+         "The Lensfield Hotel",
+         "University Arms Hotel",
+         "Warkworth House",
+         "Worth House"
+      ],
+      "area":[
+            "centre", 
+            "north", 
+            "west", 
+            "south", 
+            "east"
+      ],
+      "hasparking":[
+         "true",
+         "false"
+      ],
+      "pricerange":[
+         "moderate",
+         "cheap",
+         "expensive"
+      ],
+      "stars":[
+         "4",
+         "3",
+         "2",
+         "0"
+      ]
+   },
+   "requestable":[
+      "name",
+      "pricerange",
+      "kind",
+      "area",
+      "phone",
+      "price",
+      "addr",
+      "postcode",
+      "stars",
+      "hasinternet",
+      "hasparking"
+   ],
+   "system_requestable":[
+      "pricerange",
+      "kind",
+      "area",
+      "stars",
+      "hasparking"
+   ],
+   "type":"placetostay",
+   "method":[
+      "none",
+      "byconstraints",
+      "byname",
+      "finished",
+      "byalternatives",
+      "restart"
+   ]
+}

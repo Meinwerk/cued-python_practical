@@ -1,0 +1,104 @@
+* Python packages.
+  Ensure that you use the requirements.txt file to install the appropriate dependencies via pip.
+  pip install -r requirements.txt
+
+  If you are working on Mac, all you need to do is
+  sudo easy_install pip
+  pip install -r requirements.txt
+
+* Belief trackers.
+  Belief trackers are implemented in the original vocaliq repository, so please create symbolic links
+  in the root directory of vocaliq-python as follows:
+    1. for Baseline and Focus Baseline tracker:
+       ln -s vocaliq/corpustools/DST/scripts DST
+    2. for RNN tracker:
+       ln -s vocaliq/corpustools/discDST/discriminative .
+
+* Executable scripts. See help messages by giving -h option.
+  simulate.py   Generate dialogues with simulated users.
+  texthub.py    Text interface
+
+* Config files.
+  There are some examples of config files in config directory.
+
+* Configurable options.
+  [DEFAULT] default configs. (can be shared with RNN tracker)
+    ontology: string. path to ontology file.
+    database: string. path to database file.
+
+  [logging] context logger setting.
+    file: string. log file name.
+    file_level: string. logging level for file.
+    screen_level: string. logging level for screen.
+
+  [hub] configs for hubs.
+    semi: string. semantic decoder name. 'PassthroughSemI' by default. Note that input string should be dialog-act type
+      in the case of baseline trackers. Natural sentences are available for word-based RNN tracker.
+    semo: string. output generator name. 'PassthroughSemO' by default. 'BasicSemO' for template-based output generator.
+
+  [simulate] simulate script.
+    continuewhensuccessful: boolean.
+    maxturns: int.
+    forcenullpositive: boolean. append the hypothesis list with null() and a tiny probability (0.001).
+    confscorer: string. confidence scorer. 'additive' by default.
+
+  [policy] dialogue manager.
+    useconfreq: boolean. If true the policy is allowed to add a venue count in system actions,
+      e.g. inform(count=20, food=chinese). This addition happens in summary-master mapping.
+	policytype: string. 'hdc' for handcrafted policy (default), 'type' for text-input manual policy, 'gp' for gp policy and
+	  'nn' for neural-network policy.
+    belieftype: string. 'rnn' for recurrent neural net tracker (default). 'baseline' for baseline tracker and
+      'focus' for focus baseline tracker.
+    startwithhello: boolean. If true the first action will be 'hello()'.
+    bcm: boolean. If true the system is using a policy committee
+    currpolicy: int. learning committee member
+
+
+  [dbase] database.
+
+  [em] error model.
+    nbestsize: int.
+    confusionmodel: string. 'RandomConfusion' is only available at this point.
+    nbestgeneratormodel: string. 'UniformNBestGenerator' or 'SampledNBestGenerator'
+
+  [eval] evaluation and reward function.
+    reward_venue_recommended: int.
+    penaliseallturns: int.
+    wrongvenuepenalty: int.
+    notmentionedvaluepenalty: int.
+
+  [basicsemo] template-based output generator.
+    templatefile: string. path to template file.
+    emphasis: boolean. whether to use emphasized outputs.
+    emphasisopen: string. open tag. '<EMPH>' by default.
+    emphasisclose: string. close tag. '</EMPH>' by default.
+
+  [goalgenerator] goal generator.
+    patience: int. patience level.
+    maxvenuespergoal: int.
+
+  [um] user model.
+    usenewgoalscenarios: boolean. If true the simulated user is allowed to change their goals during dialogues.
+    answerreqalways: boolean.
+
+  [nnpolicy] neural net policy.
+
+  [gppolicy] gp policy
+    kernel: string. 'polysort' by default
+    thetafile: string. '' by default
+    revertfile: string. '' by default
+    replacefile: string. '' by default
+
+  [gpsarsa] gpsarsa
+    saveasprior: boolean. False by default
+    random: boolean. False by default
+    learning: boolean. False by default
+    gamma: float. 1.0 by default
+    sigma: float. 5.0 by default
+    nu: float. 0.01 by default
+    numprior: int. 0 by default
+    scale: int. -1 by default
+
+    
+    
+  [DEFAULT] [classifier] [track] [track_unsup] [train] [evaluate] [experiment] [seed] are sections for Matt's RNN tracker.

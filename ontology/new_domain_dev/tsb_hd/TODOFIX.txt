@@ -1,0 +1,16 @@
+http://www.toshiba.eu/hard-drives/portable/store-alu-tv-kit/px3002e-1hj0/ --- need to add weight
+
+http://www.toshiba.eu/hard-drives/portable/canvio-connect-II/hdtc825ew3ca/ --- add power
+
+http://www.toshiba.eu/hard-drives/portable/canvio-ready/hdtp220ek3ca/ -- description
+
+
+
+
+Had to hand craft:
+
+id("47")
+ 968 type("ExternalHD")
+  969 name("hdth320el3ca")
+   970 series("canvio-alu")
+    971 pricerange("cheap")

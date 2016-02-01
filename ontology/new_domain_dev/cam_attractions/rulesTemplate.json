@@ -1,0 +1,63 @@
+{
+    "type":"restaurant",
+    "requestable": [
+        "addr", 
+        "area", 
+        "food", 
+        "name", 
+        "phone", 
+        "pricerange", 
+        "postcode", 
+        "signature", 
+        "description"
+    ], 
+    "discourseAct": [
+        "ack", 
+        "hello", 
+        "none", 
+        "repeat", 
+        "silence", 
+        "thankyou"
+    ], 
+    "method": [
+        "none", 
+        "byconstraints", 
+        "byname", 
+        "finished", 
+        "byalternatives", 
+        "restart"
+    ],
+    "system_requestable": [
+        "food",
+        "pricerange",
+        "area"
+    ],
+    "informable": {
+        "food": [
+            "afghan", 
+            "african", 
+            "afternoon tea", 
+            "asian oriental", 
+            "world"
+        ], 
+        "pricerange": [
+            "cheap", 
+            "moderate", 
+            "expensive"
+        ], 
+        "name": [
+            "ali baba", 
+            "wagamama", 
+            "yippee noodle bar", 
+            "yu garden", 
+            "zizzi cambridge"
+        ], 
+        "area": [
+            "centre", 
+            "north", 
+            "west", 
+            "south", 
+            "east"
+        ]
+    }
+}

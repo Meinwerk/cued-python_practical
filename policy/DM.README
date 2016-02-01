@@ -1,0 +1,58 @@
+MLSALT9 practical 2,3 - Dialogue Policy implementation
+
+*** Directory and files ***
+
+cued-python/policy/
+    DM.README       # instruction and commands 
+    MCCPolicy.py    # Monto Carlo Control poliy       <- for practical 2
+    GPPolicy.py     # Gaussian Process poliy          <- for practical 3
+    GPLib.py        # Gaussian Process policy library <- for practical 3
+
+*** Trainig and evaluating the policy with a simulated user ***
+
+
+
+In directory cued-python/, you can find simulate.py:
+
+usage: simulate.py [-h] -C CONFIG [-n NUMBER] [-r ERROR] [--nocolor] [-g]
+                   [-s SEED]
+
+example: 
+    python simulate.py -C config/simulate_mcc_train.cfg -r 0 -n 10
+    python simulate.py -C config/simulate_mcc_test.cfg  -r 0 -n 10
+    
+    python simulate.py -C config/simulate_gp_train.cfg  -r 0 -n 10
+    python simulate.py -C config/simulate_gp_test.cfg   -r 0 -n 10
+
+
+Training/testing, mcc/gp modes and parameter settings are determined in the configuration file.
+
+
+
+The following is an example averaged results of 10 training dialogues:
+
+--------------------
+Results for domain: TT
+  INFO :: 22:02:37: root Evaluation.py:print_summary>147: 
+          # of dialogues  = 10
+  INFO :: 22:02:37: root Evaluation.py:print_summary>150: 
+          Average reward  = -1.20 +- 7.61
+  INFO :: 22:02:37: root Evaluation.py:print_summary>152: 
+          Average success = 40.00 +- 30.36
+  INFO :: 22:02:37: root Evaluation.py:print_summary>154: 
+          Average turns   = 9.20 +- 3.89
+
+
+*** Question ***
+
+Practical 2 - Monte Carlo Control Policy:
+
+Implement the episode generation and Q value update parts the codes to optimise the system in interaction with the simulated user 
+
+Examine and plot the influence of the specification parameter nu on the learning curve of task success performance along wit the training dialogues (show the testing results after every 50 training dialogues).
+Please implement it in the file: MCCPolicy.py, where the TODO sections are highlighted.
+
+
+Practical 3 - Gaussian Process SARSA Policy:
+
+Implement the 

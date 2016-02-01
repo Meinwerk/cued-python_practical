@@ -1,0 +1,49 @@
+CUT THIS HUGE ONTOLOGY UP INTO THE FOLLOWING:
+
+--- 
+Attractions - seetype, unitype, entstype, sportsvenue  # see how many entities here - possibly split this up?
+Ammenities - amtype, shoptype 
+Hotels - staytype,  
+Transport - transtype 
+
+
+Transport:
+- how to deal with taxi?   - location_to and location_from
+
+
+Need to put location stuff back:
+id("00")
+addenbrookes("52.176644,0.1429")
+arbury("52.222717,0.120639")
+barnwell("52.203661,0.167739")
+castlehill("52.211261,0.114958")
+cherryhinton("52.187511,0.174539")
+chesterton("52.222475,0.139525")
+citycentre("52.205392,0.119058")
+fenditton("52.219056,0.164192")
+girton("52.235294,0.084817")
+kingshedges("52.228797,0.133094")
+newchesterton("52.215558,0.123319")
+newnham("52.202681,0.101853")
+riverside1("52.197508,0.118333")
+riverside10("52.210967,0.119375")
+riverside11("52.212294,0.119375")
+riverside12("52.213217,0.123439")
+riverside13("52.212972,0.126853")
+riverside14("52.211356,0.129842")
+riverside15("52.210364,0.133611")
+riverside16("52.211161,0.138089")
+riverside17("52.212547,0.142306")
+riverside18("52.215086,0.144803")
+riverside2("52.199378,0.116017")
+riverside3("52.201456,0.115522")
+riverside4("52.203275,0.114169")
+riverside5("52.204986,0.113969")
+riverside6("52.206517,0.113933")
+riverside7("52.2077,0.115511")
+riverside8("52.208897,0.115853")
+riverside9("52.209828,0.116397")
+romsey("52.202011,0.145086")
+trumpington("52.174531,0.112894")
+
+

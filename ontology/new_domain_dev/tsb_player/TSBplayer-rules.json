@@ -1,0 +1,59 @@
+{
+   "discourseAct":[
+      "ack",
+      "hello",
+      "none",
+      "repeat",
+      "silence",
+      "thankyou"
+   ],
+   "informable":{
+      "kind":[
+         "dvd",
+		 "dvd recorder",
+         "blu ray"
+      ],
+      "name":[
+         "dr20kb",
+         "bdx5500kb",
+         "bdx2550kb",
+         "bdx1500kb",
+         "dvr20kb",
+		 "rdxv60kb"
+      ],
+      "pricerange":[
+         "cheap",
+		 "moderate",
+		 "expensive"
+      ],
+      "internet":[
+         "lan",
+         "wifi",
+		 "lan and wifi",
+         "no internet"
+      ]
+   },
+   "requestable":[
+      "internet",
+      "price",
+      "pricerange",
+	  "kind",
+	  "weight",
+	  "dimensions",
+	  "hdmi"
+   ],
+   "system_requestable":[
+      "pricerange",
+      "kind",
+      "internet"
+   ],
+   "type":"videoplayer",
+   "method":[
+      "none",
+      "byconstraints",
+      "byname",
+      "finished",
+      "byalternatives",
+      "restart"
+   ]
+}

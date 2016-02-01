@@ -1,0 +1,557 @@
+##################################################################################################################
+# Updates by djv27
+#
+# Draft Version : 0.2
+# Date : 15/10/2014, Senthil - STG-Toshiba CRL
+#
+# Draft Version : 0.1
+# Date : 10/04/2014, Senthil - STG-Toshiba CRL
+#
+### need to specify via tokens {+,-,*, ,} how the atributes of entities and types can be queried by users. 
+# see rules.cpp and rules.h for use of these.
+# think they mean the following:
+# - : user can't find laptops based on this - is an information slot only that may be queried once on specific laptops.
+# + : must be queried by the machine before giving a laptop to the user
+#   : think it can be queried but doesn't have to be by machine before giving laptop option to user
+# * : not sure and not used in Toshiba.  
+##################################################################################################################
+
+
+# HIS Rules for Toshiba laptops
+task -> find(-entity, -method, -discourseAct);
+
+# define main entities in the domain: laptop configuration
+entity -> device(-name, +type, family, utility, pricerange, driverange, weightrange, batteryrating);
+
+# taxonomy of toshiba laptops
+type -> laptop(-price, +platform, +processorClass, -processor, +sysmemory, -drive, -graphAdaptor, -display, -design, -battery, -weight, -dimension, +warranty, +isforbusinesscomputing);
+
+# # re BUDS tracker
+# 14 goals  (task,entity,type, and 11 informable slots)
+# 10 requestable slots 
+
+
+##################################################################################################################
+#
+#### may need to alter methods of finding laptops. the numbers don't mean anything in current system. 
+#
+# Different methods of finding a laptop
+# TBD
+##################################################################################################################
+
+
+method -> byconstraints(){0.80};
+method -> byalternatives(){0.15};
+method -> byname(){0.10};
+method -> finished(){0.05};
+method -> restart() {0.1};
+
+
+discourseAct -> repeat(){0.10};
+discourseAct -> reqmore(){0.10};
+discourseAct -> thankyou(){0.10};
+discourseAct -> ack(){0.10};
+discourseAct -> hello() {0.1};
+discourseAct -> silence() {0.1};
+discourseAct -> none() {0.4};
+
+
+
+
+
+##################################################################################################################
+##
+####   allowable values for each slot below:
+##
+##################################################################################################################
+
+
+family = (
+"satellite"
+|"tecra"
+|"satellite pro"
+|"portege"
+);
+
+utility = (
+"thin light and ultrabook"
+|"touchscreen"
+|"everyday computing"
+|"entertainment"
+|"performance mobile"
+|"ultrabook"
+|"ultra mobile"
+);
+
+# Buget: 0 to 500GBP, Moderate: 501 to 1000GBP & Expensive: 1000GBP+
+pricerange = (
+"budget"
+|"moderate"
+|"expensive"
+);
+
+# Light-weight: 0 to 1.5kg, Moderate: 1.5 to 2.5 & Heavy: 2.5+ kg
+weightrange = (
+"light weight"
+|"mid weight"
+|"heavy"
+);
+
+# Standard battery life or autonomy (now called batteryrating): 0 to 3hours, Good: 3 to 5hours & Exceptional: 5+ hours
+batteryrating = (
+"standard"
+|"good"
+|"exceptional"
+);
+
+# small: < 500 GB , medium < 1 TB , large >= 1 TB
+driverange = (
+"small"
+|"medium"
+|"large"
+);
+
+name = (
+"satellite-nb10t-a-102"
+| "satellite-nb10t-a-101"
+| "satellite-u920t-10p"
+| "satellite-u920t-11c"
+| "satellite-u920t-117"
+| "satellite-u940-11f"
+| "satellite-u50t-a-10f"
+| "satellite-u50t-a-10e"
+| "satellite-p50t-a-125"
+| "satellite-s70-a-11h"
+| "satellite-p70-a-11r"
+| "satellite-p875-31p"
+| "satellite-w30dt-a-100"
+| "satellite-w30t-a-101"
+| "satellite-m50dt-a-106"
+| "satellite-m50-a-11n"
+| "satellite-m50-a-11c"
+| "satellite-m50-a-11p"
+| "satellite-s50d-a-10f"
+| "satellite-s50d-a-10h"
+| "satellite-s50d-a-10g"
+| "satellite-c50-a-1jp"
+| "satellite-c50t-a-11d"
+| "satellite-c50-a-1jn"
+| "satellite-c50-a-1jm"
+| "satellite-c50-a-1jq"
+| "satellite-c50t-a-10t"
+| "satellite-c50d-a-133"
+| "satellite-c50d-a-138"
+| "satellite-c50d-a-136"
+| "satellite-c50-a-1dt"
+| "satellite-c50-a-146"
+| "satellite-c50t-a-10j"
+| "satellite-c55-a-1n4"
+| "satellite-c55-a-1r9"
+| "satellite-c55-a-1r6"
+| "satellite-c55-a-1r7"
+| "satellite-c55-a-1uc"
+| "satellite-c55-a-1r8"
+| "satellite-c55-a-1n0"
+| "satellite-c55-a-1he"
+| "satellite-c55-a-1hl"
+| "satellite-c55d-a-13u"
+| "satellite-c55-a-1hn"
+| "satellite-c55-a-1ck"
+| "satellite-c55-a-100"
+| "satellite-c850-1mc"
+| "satellite-c70-a-16p"
+| "satellite-c70d-a-114"
+| "satellite-c70d-a-111"
+| "satellite-c70-a-107"
+| "satellite-c75-a-14x"
+| "satellite-c75-a-156"
+| "satellite-c75-a-13n"
+| "satellite-c75-a-10p"
+| "tecra-w50-a-102"
+| "tecra-z50-a-11h"
+| "tecra-z50-a-11j"
+| "tecra-z50-a-106"
+| "tecra-z40-a-140"
+| "tecra-z40-a-119"
+| "tecra-z40-a-11u"
+| "tecra-z40-a-112"
+| "tecra-z40-a-111"
+| "tecra-a50-a-19j"
+| "tecra-a50-a-15r"
+| "tecra-a50-a-151"
+| "tecra-a50-a-12m"
+| "tecra-r940-1mj"
+| "tecra-r940-1jg"
+| "tecra-r940-1jh"
+| "tecra-r940-1fe"
+| "tecra-r950-1cl"
+| "tecra-r950-1en"
+| "tecra-r950-1em"
+| "tecra-r950-1ej"
+| "tecra-r950-1ek"
+| "tecra-r950-153"
+| "satellite-pro-c70-a-16d"
+| "satellite-pro-c70-a-16f"
+| "satellite-pro-c70-a-17l"
+| "satellite-pro-c70-a-13l"
+| "satellite-pro-c70-a-159"
+| "satellite-pro-nb10-a-10p"
+| "satellite-pro-nb10t-a-106"
+| "satellite-pro-c50-a-1m3"
+| "satellite-pro-c50d-a-145"
+| "satellite-pro-c50-a-1e0"
+| "satellite-pro-c50-a-1e6"
+| "satellite-pro-c50-a-1e2"
+| "satellite-pro-c50-a-1e4"
+| "satellite-pro-c50-a-1e1"
+| "satellite-pro-c50-a-1k9"
+| "satellite-pro-c50-a-136"
+| "satellite-pro-c50-a-137"
+| "satellite-pro-l830-17t"
+| "satellite-pro-l830-172"
+| "portege-z10t-a-12n"
+| "portege-z10t-a-11z"
+| "portege-z10t-a-106"
+| "portege-z10t-a-104"
+| "portege-z10t-a-103"
+| "portege-r30-a-15n"
+| "portege-z30-a-108"
+| "portege-z30-a-13w"
+| "portege-z30-a-138"
+| "portege-z30-a-10p"
+| "portege-z30-a-10w"
+| "portege-z30-a-116"
+| "portege-z30-a-13x"
+| "portege-r930-14x"
+| "portege-r930-1cw"
+| "portege-r930-1d0"
+| "portege-r930-1d7"
+| "portege-r930-1cz"
+| "portege-r930-1cx"
+| "portege-z930-16g"
+| "portege-z930-14d"
+| "portege-z930-153"
+| "portege-z930-14c"
+| "portege-z930-151"
+| "portege-z930-14l"
+| "portege-z930-14n"
+);
+
+price = (
+"349"
+|"329"
+|"899"
+|"1066.8"
+|"999"
+|"499"
+|"699"
+|"629"
+|"1199"
+|"599"
+|"479"
+|"529"
+|"449"
+|"549"
+|"419"
+|"299"
+|"379"
+|"279"
+|"399"
+|"334.8"
+|"429"
+|"2000"
+|"925"
+|"1225"
+|"1000"
+|"1025"
+|"1100"
+|"1150"
+|"875"
+|"750"
+|"825"
+|"1299"
+|"729"
+|"1129"
+|"939"
+|"874"
+|"929"
+|"649"
+|"719"
+|"434"
+|"450"
+|"505"
+|"417"
+|"440"
+|"285"
+|"295"
+|"426"
+|"253"
+|"264"
+|"414"
+|"363"
+|"453"
+|"280"
+|"467"
+|"394"
+|"339"
+|"1350"
+|"1250"
+|"749.17"
+|"1149"
+|"969"
+|"1070"
+|"1405"
+|"1200"
+|"1050"
+|"975"
+|"900"
+|"850"
+|"1435"
+|"1239"
+|"1059"
+|"1179"
+|"1069"
+|"944"
+|"1039"
+|"834"
+|"889"
+|"1749"
+|"1029"
+);
+
+# every value had 64-bit on end. removed this redudancy to make semi parsing easier. 
+platform = (
+"windows 8"
+|"windows 8 pro"
+|"windows 8.1"
+|"windows 8.1 pro"
+|"windows 7 pro"
+);
+
+sysmemory = (
+"2 gb"
+|"4 gb"
+|"6 gb"
+|"8 gb"
+|"12 gb"
+|"16 gb"
+|"32 gb"
+);
+
+drive = (
+"500 GB"
+|"128 GB"
+|"750 GB"
+|"1 TB"
+|"2 TB"
+|"256 GB"
+|"320 GB"
+);
+
+processorClass = (
+"intel pentium"
+| "intel celeron"
+| "intel core i3"
+| "intel core i5"
+| "intel core i7"
+| "amd a4"
+| "amd a6"
+| "amd a8"
+| "amd a10"
+| "amd essentials"
+);
+
+processor = (
+"Intel Pentium N3510"
+|"Intel Celeron N2810"
+|"Intel Core i3-3227U"
+|"Intel Core i5-3317U"
+|"Intel Core i5-4200U"
+|"Intel Core i3-4010U"
+|"Intel Core i7-4700MQ"
+|"Intel Core i5-4200M"
+|"Intel Core i7-3630QM"
+|"AMD A4-1200 Accelerated"
+|"Intel Core i3-4020Y"
+|"AMD A6-5200 Accelerated"
+|"Intel Core i3-4005U"
+|"Intel Core i5-4200U"
+|"AMD A10-5745M Accelerated"
+|"AMD A8-5545M Accelerated"
+|"Intel Pentium N3520"
+|"Intel Celeron 1005M"
+|"Intel Celeron N2820"
+|"AMD Essentials E1-2100 Accelerated"
+|"Intel Pentium 2020M"
+|"Intel Core i3-4000M"
+|"Intel Core i5-3230M"
+|"Intel Pentium B960"
+|"Intel Core i3-3110M"
+|"Intel Core i3-3120M"
+|"Intel Core i7-4800MQ vPro"
+|"Intel Core i7-4600U vPro"
+|"Intel Core i5-4300U vPro"
+|"Intel Core i5-4300M vPro"
+|"Intel Core i7-3540M vPro"
+|"Intel Core i5-3340M vPro"
+|"Intel Core i5-3320M vPro"
+|"Intel Core i5-3210M"
+|"Intel Core i3-3227U"
+|"Intel Core i3-2375M"
+|"Intel Core i5-4300Y vPro"
+|"Intel Core i5-3339Y"
+|"Intel Core i5-3439Y vPro"
+|"Intel Core i3-4010U"
+|"Intel Core i7-3520M vPro"
+|"Intel Core i5-3337U"
+|"Intel Core i5-3437U vPro"
+|"Intel Core i7-3687U vPro"
+);
+
+graphAdaptor = (
+"Intel HD Graphics"
+|"Intel HD Graphics 3000"
+|"Intel HD Graphics 4200"
+|"Intel HD Graphics 4000"
+|"Intel HD Graphics 4400"
+|"Intel HD Graphics 4600"
+|"NVIDIA GeForce GT 710M"
+|"NVIDIA GeForce GT 740M"
+|"NVIDIA GeForce GT 745M"
+|"NVIDIA GeForce GT 640M"
+|"NVIDIA Quadro K2100M"
+|"AMD A4-1200 Accelerated with AMD Radeon HD 8180 Graphics"
+|"AMD A6-5200 Accelerated with AMD Radeon HD 8400 Graphics"
+|"AMD A10-5745M Accelerated with AMD Radeon HD 8610G + 8550M Dual Graphics"
+|"AMD A8-5545M Accelerated with AMD Radeon HD 8510G + 8550M Dual Graphics"
+|"AMD E1-2100 APU with AMD Radeon HD 8210 Graphics"
+);
+
+display = (
+"Toshiba TruBrite HD TFT High Brightness touch display with 16 : 9 aspect ratio and LED backlighting"
+|"Toshiba HD TFT High Brightness touch display with 16 : 9 aspect ratio, scratch resistant Corning Gorilla Glass and LED backlighting"
+|"Toshiba TruBrite HD TFT High Brightness display with 16 : 9 aspect ratio and LED backlighting"
+|"Toshiba TruBrite Full HD TFT High Brightness eDP touch display with LED backlighting, 16 : 9 aspect ratio"
+|"Toshiba TruBrite HD+ TFT High Brightness display with 16 : 9 aspect ratio and LED backlighting"
+|"Toshiba TruBrite FHD TFT High Brightness display with LED backlighting and 16 : 9 aspect ratio"
+|"Toshiba TruBrite HD+ TFT High Brightness display with LED backlighting and 16 : 9 aspect ratio"
+|"Toshiba IPS HD TFT High Brightness touch display with 16 : 9 aspect ratio, LED backlighting and Fingerprint Coating"
+|"Toshiba TruBrite HD TFT High Brightness touch display with 16 : 9 aspect ratio, LED backlighting and Anti Fingerprint Coating"
+|"Toshiba HD non-reflective High Brightness display with 16 : 9 aspect ratio and LED backlighting"
+|"Toshiba Full HD TFT non-reflective High Brightness eDP display with LED backlighting, 16 : 9 aspect ratio"
+|"Toshiba HD non-reflective High Brightness eDP display with 16 : 9 aspect ratio and LED backlighting"
+|"Toshiba HD+ TFT non-reflective High Brightness display with 16 : 9 aspect ratio and LED backlighting"
+|"Toshiba TruBrite HD High Brightness display with 16 : 9 aspect ratio and LED backlighting"
+|"Toshiba IPS FullHD non-reflective High Brightness touch display with Wide View Angle, Digitizer and Pen, 16 : 9 aspect ratio, LED backlighting, hardened IOX Glass, Anti Fingerprint and Anti Reflective Coating"
+|"Toshiba IPS FullHD non-reflective High Brightness touch display with Wide View Angle, 16 : 9 aspect ratio, LED backlighting, hardened IOX Glass, Anti Fingerprint and Anti Reflective Coating"
+);
+
+design = (
+"Silver metallic, black keyboard"
+|"Precious Silver Finish with Brown Woven Texture, black tile keyboard on silver metal base"
+|"Ice Blue Silver Finish, black tile keyboard on ice blue silver frame"
+|"Smart silver brushed aluium finish, black keyboard"
+|"Precious silver brushed aluium finish, black keyboard"
+|"Ice blue brushed aluium finish, black keyboard"
+|"Precious Silver Etched Aluum Finish, black keyboard"
+|"Silver brushed aluium finish, black keyboard"
+|"Matt black finish with hairline pattern, black keyboard"
+|"Shining silver glossy finish, black keyboard"
+|"Luxe white glossy finish , white keyboard"
+|"Precious black glossy finish , black keyboard"
+|"Matt Black Finish with textured pattern, black keyboard"
+|"Black"
+|"Steel grey metallic, magnesium chassis, matt black keyboard"
+|"Graphite Black with grooved texture, matt black keyboard"
+|"Premium Black, black keyboard"
+|"Matt & Glossy Crossline pattern, black keyboard"
+|"Silver grey metallic, silver-grey keyboard"
+|"Black magnesium chassis with brushed metallic finish, matt black keyboard"
+);
+
+battery = (
+"3 30"
+|"4 00"
+|"4 30"
+|"5 00"
+|"5 30"
+|"5 45"
+|"6 45"
+|"6 00"
+|"6 30"
+|"7 00"
+|"7 15"
+|"7 30"
+|"8 00"
+|"9 00"
+|"10 00"
+|"12 00"
+);
+
+weight = (
+"1.5"
+|"1.52"
+|"1.72"
+|"2.40"
+|"2.60"
+|"2.7"
+|"2.99"
+|"2.12"
+|"2.20"
+|"2.38"
+|"2.4"
+|"2.6"
+|"2.3"
+|"1.8"
+|"1.47"
+|"2.6"
+|"1.99"
+|"2.49"
+|"1.3"
+|"1.86"
+|"1.45"
+|"1.50"
+|"1.20"
+|"1.12"
+|"1.050"
+);
+
+dimension = (
+"284 x 208.6 x 13.8 - 25.1"
+|"326.5 x 213.0 x 19.9"
+|"339.6 x 238.3 x 20.9"
+|"377.5 x 249.5 x 21"
+|"377.5 x 244.0 x 30.15"
+|"413.0 x 268.0 x 31.3 - 33.7"
+|"418.4 x 272.5 x 28.0 - 33.7"
+|"418.2 x 272.2 x 28.0 - 33.7"
+|"331.3 x 230 x 24.6"
+|"377.5 x 244.0 x 24.4"
+|"380.0 x 242.0 x 30.8 - 33.35"
+|"380.0 x 242.0 x 32.38 - 33.25"
+|"380.0 x 242.0 x 33.52"
+|"380.9 x 253.9 x 34.9"
+|"379.0 x 252.0 x 20.4"
+|"338.0 x 236.0 x 20.4"
+|"380.0 x 253.9 x 34.9"
+|"341.0 x 239.0 x 19.9 - 27.4"
+|"379.0 x 252.0 x 20.8 - 25.4"
+|"284 x 308.6 x 13.8 - 21.5"
+|"329 x 221 x 26.8 -30.62"
+|"299.0 x 220.5 x 16.9 - 19.9"
+|"316.0 x 227.0 x 18.3 - 26.6"
+|"316.0 x 227.0 x 13.9 - 17.9"
+|"316.0 x 227.0 x 8.3 - 15.9"
+|"331.1 x 214.95 x 14"
+);
+
+warranty = (
+"1 year european"
+|"1 year international"
+|"3 year international"
+);
+
+isforbusinesscomputing = (
+"0" 
+| "1"
+); 
