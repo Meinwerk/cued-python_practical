@@ -18,14 +18,14 @@ usage: simulate.py [-h] -C CONFIG [-n NUMBER] [-r ERROR] [--nocolor] [-g]
                    [-s SEED]
 
 example: 
-    python simulate.py -C config/simulate_mcc_train.cfg -r 0 -n 10
-    python simulate.py -C config/simulate_mcc_test.cfg  -r 0 -n 10
+    python simulate.py -C config/simulate_mcc_train.cfg -r 15 -n 10
+    python simulate.py -C config/simulate_mcc_test.cfg  -r 15 -n 10
      
-    python simulate.py -C config/simulate_gp_linear_train.cfg  -r 0 -n 10
-    python simulate.py -C config/simulate_gp_linear_test.cfg   -r 0 -n 10
+    python simulate.py -C config/simulate_gp_linear_train.cfg  -r 15 -n 10
+    python simulate.py -C config/simulate_gp_linear_test.cfg   -r 15 -n 10
    
-    python simulate.py -C config/simulate_gp_gauss_train.cfg  -r 0 -n 10
-    python simulate.py -C config/simulate_gp_gauss_test.cfg   -r 0 -n 10
+    python simulate.py -C config/simulate_gp_gauss_train.cfg  -r 15 -n 10
+    python simulate.py -C config/simulate_gp_gauss_test.cfg   -r 15 -n 10
 
 
 Training/testing, mcc/gp modes, input/output files and parameter settings are determined in the configuration file.
@@ -52,11 +52,11 @@ Results for domain: TT
 Practical 2 - Monte Carlo Control Policy:
 ----------------------------------------------
 
-Implement the episode generation and Q value update parts in the codes to optimise the system in interaction with the simulated user 
+Implement the episode generation and Q value update parts in the codes to optimise the system in interaction with the simulated user under error rate 15% (-r 15). 
 
-1. examine the influence of the specification parameter nu and plot the learning curve of task success along with the training dialogues (show the averaged testing results of 100 dialogues after every 50 training dialogues).
+1. examine the influence of the specification parameter nu and plot the learning curve of task success along with the training dialogues (show the averaged testing results of 100 dialogues after every 200 training dialogues, up to 2000 training dialogues).
 
-2. show up to 20 lines of the relevant code.
+2. show up to 20 lines of the code you implement.
 
 Please implement it in the file: MCCPolicy.py, where the TODO sections are highlighted.
 
@@ -66,12 +66,12 @@ Please implement it in the file: MCCPolicy.py, where the TODO sections are highl
 Practical 3 - Gaussian Process SARSA Policy:
 ----------------------------------------------
 
-Implement the sparcification criterion part in the code to complete the GP-SARSA algorithm with the threshold v=0.01.
+Implement the sparcification criterion part in the code to complete the GP-SARSA algorithm with the threshold v=0.01 under error rate 15% (-r 15).
 
-1. Use linear kernel function with sigma=5 and compare the its success rate learning curve to the MCC algorithm (show the averaged success rate results of 100 dialogues after every 50 training dialogues).
+1. Use linear kernel function with sigma=5 and compare the its success rate learning curve to the MCC algorithm (show the averaged success rate results of 100 dialogues after every 200 training dialogues, up to 2000 training dialogues).
 
 2. (Optional) Use Gaussian kernel function and see the performance by tuning the parameters p and l and compare its success rate learning curve results with the linear kernel GP-SARSA and MCC algorithm.
 
-3. show up to 20 lines of the relevant code.
+3. show up to 20 lines of the code you implement.
   
-Please see the file: $GPLib.py$, where the TODO sections are highlighted.
+Please see the file: GPLib.py, where the TODO sections are highlighted.
