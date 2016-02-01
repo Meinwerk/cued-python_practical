@@ -439,10 +439,10 @@ class Kernel():
 
         if self.kernel_type == "gausssort":
 
-            if len(self.theta)!=2:
+            if len(self.theta)<2:
                 logger.warning("Parameters not given")
-            p = self.theta[0]
-            sigmak = self.theta[1]
+            p = self.theta[-2]
+            sigmak = self.theta[-1]
             if p < 0 or sigmak < 0:
                 return float('nan')
             elif self.der == -1:
@@ -610,6 +610,7 @@ class GPPolicy():
         Kernel parameters
         '''
         if self.thetafile != "":
+            self.theta = []
             f = open(self.thetafile, 'r')
             for line in f:
                 line = line.strip()
