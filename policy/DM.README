@@ -20,12 +20,15 @@ usage: simulate.py [-h] -C CONFIG [-n NUMBER] [-r ERROR] [--nocolor] [-g]
 example: 
     python simulate.py -C config/simulate_mcc_train.cfg -r 0 -n 10
     python simulate.py -C config/simulate_mcc_test.cfg  -r 0 -n 10
-    
-    python simulate.py -C config/simulate_gp_train.cfg  -r 0 -n 10
-    python simulate.py -C config/simulate_gp_test.cfg   -r 0 -n 10
+     
+    python simulate.py -C config/simulate_gp_linear_train.cfg  -r 0 -n 10
+    python simulate.py -C config/simulate_gp_linear_test.cfg   -r 0 -n 10
+   
+    python simulate.py -C config/simulate_gp_gauss_train.cfg  -r 0 -n 10
+    python simulate.py -C config/simulate_gp_gauss_test.cfg   -r 0 -n 10
 
 
-Training/testing, mcc/gp modes and parameter settings are determined in the configuration file.
+Training/testing, mcc/gp modes, input/output files and parameter settings are determined in the configuration file.
 
 
 
