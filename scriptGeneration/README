@@ -1,0 +1,57 @@
+Summary:
+    usage:
+        python script_train.py list_train
+        python script_test.py list_test
+
+
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+Files in this script generation directory:
+
+--SCRIPT--
+script_train.py         - trainig script generator, set your desired parameter settings
+script_test.py          - testing script generator, set your desired parameter settings
+
+
+grid_training.py        - given total training iterations, call grid_training.py
+grid_testing.py         - given total testing  iterations, call grid_testing.py
+
+
+run_grid_training.py    - called by grid_training.py, call simulate.py
+run_grid_testing.py     - called by grid_testing.py, call simulate.py 
+
+--TOOL--
+parseResults.py         - print out training/testing results
+                        - execute it without any arguments for command example
+
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+INSTRUCTION:
+
+
+STEP 1:
+***** check your host name *****
+
+example:
+
+>>> import socket
+>>> print(socket.gethostname())
+krakow
+********************************
+
+STEP 2:
+***** customise your scripts *****
+
+In
+    script_train.py:
+    script_test.py:
+
+-> for line 95,97: set your own config path
+-> for line 119: replace root directory with your own path.
+
+In 
+    grid_training.py:
+    grid_testing.py:    
+
+-> checking your host name by step 1, replace 'krakow' with it.
+
