@@ -453,7 +453,7 @@ class UMHdcSim():
                     self.agenda.push(agenda_act)
 
         if action_taken:
-            print 'CASE1'
+            logger.debug('CASE1')
             return
 
         '''
@@ -461,7 +461,7 @@ class UMHdcSim():
         '''
         if not self.answer_req_always:
             if self.agenda.get_agenda_with_act('inform') != [] or self.agenda.get_agenda_with_act('request') != []:
-                print 'CASE2'
+                logger.debug('CASE2')
                 return
 
         '''
@@ -469,7 +469,7 @@ class UMHdcSim():
                 but there is a corresponding constraint in the user goal.
         '''
         if goal.contains_slot_const(requested_slot):
-            print 'CASE3'
+            logger.debug('CASE3')
             new_act = DiaAct.DiaAct('inform()')
             for slot in answer_slots:
                 correct_val = goal.get_correct_const_value(slot)
@@ -484,7 +484,7 @@ class UMHdcSim():
         '''
         Case 4: There is nothing on the agenda or the on the user goal.
         '''
-        print '###4 ---- into case 4 --- prob going to say dontcare ...'
+        logger.debug('###4 ---- into case 4 --- prob going to say dontcare ...')
         # Either repeat last user request or invent a value for the requested slot.
         f = Settings.random.rand()
         if f < rand_decision_probs['NewRequestResp1']:
@@ -495,9 +495,9 @@ class UMHdcSim():
                 self.agenda.push(DiaAct.DiaAct('inform(=dontcare)'))
                 goal.add_const(slot=requested_slot,value=random_val)
                 goal.add_prev_used(requested_slot,random_val)
-                print '###4.1 just added to goal.prev_slot_values ', requested_slot, ' ',random_val
+                logger.debug('###4.1 just added to goal.prev_slot_values '+ str(requested_slot)+' '+str(random_val))
             else: 
-                print '###4.2'
+                logger.debug('###4.2')
                 sampled_act = Settings.random.choice(goal.constraints)
                 sampled_slot, sampled_op, sampled_value = sampled_act.slot, sampled_act.op, sampled_act.val
                 self.agenda.push(DiaAct.DiaAct('inform(%s="%s")' % (sampled_slot, sampled_value)))
@@ -524,9 +524,9 @@ class UMHdcSim():
                     self.agenda.push(DiaAct.DiaAct('inform(=%s' % random_val ))
                     #goal.add_const(slot=requested_slot,value=random_val) #dont think this should be added to constraints
                     goal.add_prev_used(requested_slot,random_val)
-                    print '###4.3 just added to goal.prev_slot_values ', requested_slot, ' ',random_val
+                    logger.debug('###4.3 just added to goal.prev_slot_values '+str(requested_slot)+' '+str(random_val))
                 else:
-                    print '###4.4'
+                    logger.debug('###4.4')
                     additional_slots = self.domainUtil.getSlotsToExpress(requested_slot, random_val)
                     for slot in additional_slots:
                         rval = self.domainUtil.getRandomValueForSlot(slot)
@@ -535,11 +535,11 @@ class UMHdcSim():
                 goal.add_const(slot=requested_slot,value=random_val) 
                 #goal.constraints[requested_slot] = random_val
                 self.agenda.push(DiaAct.DiaAct('inform(%s="%s")' % (requested_slot, random_val)))
-                print '###4.5 -- havent added anything to prev_slot_values'
+                logger.debug('###4.5 -- havent added anything to prev_slot_values')
     
         else:
             # Decided to say dontcare. 
-            print '###4.6'
+            logger.debug('###4.6')
             goal.add_const(slot=requested_slot,value='dontcare')
             goal.add_prev_used(requested_slot,'dontcare')
             self.agenda.push(DiaAct.DiaAct('inform(%s="%s")' % (requested_slot, 'dontcare')))

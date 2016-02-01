@@ -95,7 +95,6 @@ class DataBase():
     def __init__(self, dbfile):
         if '.json' in dbfile:
             # use the tinydb json database format
-            # TODO
             from tinydb import TinyDB,where
             logger.error("USE THE OLD .txt METHOD: Bugs exist with queries in tinydb format. Not clear for now that we need more domains or gain anything by integrating json format -- on hold!")
             self.ent_by_feat_method = 'tinydb'

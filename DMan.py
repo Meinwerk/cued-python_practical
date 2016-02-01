@@ -58,9 +58,9 @@ logger = ContextLogger.getLogger('')
 class DMan:
     '''Dialogue manager: controls all policy type/instance and policy learning choices. 
     '''
-    def __init__(self,domainUtil):  # TODO - delete, deprecated , policy_file=None):
+    def __init__(self,domainUtil): 
         """
-        Constructor for Dialogue manager.
+        Constructor for Dialogue manager: has a belief state tracker and a policy.
         :param domainUtil: (instance) of :class:`DomainUtils`
         :return:
         """
@@ -78,7 +78,8 @@ class DMan:
             self.bcm = Settings.config.getboolean('policy', 'bcm')
 
         if not Settings.config.has_section('policy_'+domainUtil.domainString):
-            logger.warning("No policy section specified for domain: "+domainUtil.domainString)
+            logger.warning("No policy section specified for domain: "+domainUtil.domainString+" - defaulting to HDC")
+            self.pol_type = 'hdc'
 
         self.learning = False
         if Settings.config.has_option('policy_'+domainUtil.domainString, 'learning'):
@@ -118,16 +119,11 @@ class DMan:
         elif self.pol_type == 'gp':
             from policy import GPPolicy
             if self.bcm :
-                # TODO - needs fixing
-                # -- needs to deal with in and out policy files along with their domains
                 policy_files = DomainUtils.get_all_policies()   # TODO - delete - deprecated -- policy_file.split(";")
                 self.policies = []
                 for pf in policy_files:
-                    # TODO - fix up this for changed GPPolicy() interface
-                    # My guess is it needs a little work since each policy file was probably assumed to be coming
-                    # from a different domain, but DMan() now fires up single domains
                     self.policies.append(GPPolicy.GPPolicy(pf, len(self.actions.action_names), self.actions.action_names))
-            else: # added the else, but it is else behaviour right?
+            else: 
                 self.policy = GPPolicy.GPPolicy(in_policy_file, 
                                                 out_policy_file,
                                                 len(self.actions.action_names), 
@@ -166,7 +162,7 @@ class DMan:
         if self.pol_type != 'gp' and self.pol_type != 'hdc' and self.pol_type != 'mcc':
             self.policy.load(policy_file)
 
-        belief_type = 'rnn'
+        belief_type = 'baseline' # can alternatively use 'focus' as the default
         if Settings.config.has_option('policy_'+domainUtil.domainString, 'belieftype'):
             configlist.append('belieftype')
             belief_type = Settings.config.get('policy_'+domainUtil.domainString, 'belieftype')
@@ -182,10 +178,8 @@ class DMan:
                     logger.error('Invalid config: '+opt)
 
         if belief_type == 'focus':
-            print('DMan.py XXXX -- tracker - focus')
             self.beliefs = BeliefTracker.FocusTracker(domainUtil)
         elif belief_type == 'baseline':
-            print('DMan.py XXXXX -- tracker - baseline')
             self.beliefs = BeliefTracker.BaselineTracker(domainUtil)
         elif belief_type == 'rnn':
             self.beliefs = BeliefTracker.RNNTracker()
@@ -281,7 +275,7 @@ class DMan:
             self.lastSystemAction = systemAct
         
         else:
-            assert(0)
+            logger.error('Currently unhandled policy type...'+self.pol_type) # should never get here, will have been checked.
         return systemAct
 
     def startLearningEpisode(self, episodeNum):
@@ -378,7 +372,10 @@ class DMan:
 
     def get_conditional_constraints(self,prev_domain_constraints):
         """Called by ENTERING DOMAIN
-        Takes a dict (keys=all available domains we have -- more info this way than just a list of slots + values) of constraints from previous domains AS DETERMINED BY THE DIALOGS IN THOSE DOMAINS WITH THE DOMAINS OWN TRACKER - then conditionally initialises the new tracker. (Meaning this is only called when domain is first launched within a single dialog).
+        Takes a dict (keys=all available domains we have -- more info this way than just a list of 
+        slots + values) of constraints from previous domains AS DETERMINED BY THE DIALOGS IN THOSE 
+        DOMAINS WITH THE DOMAINS OWN TRACKER - then conditionally initialises the new tracker. 
+        (Meaning this is only called when domain is first launched within a single dialog).
 
         :param prev_domain_constraints:
         :returns None:
@@ -397,11 +394,10 @@ class DMan:
                                 constraints[slot] = [val]
                             else:
                                 constraints[slot].append(val)
-        print constraints
+        logger.debug("Constraints: "+str(constraints))
         return constraints
 
 if __name__ == '__main__':
-    # TODO - below, but also is __main__ needed here? 
     raw_input('THE MAIN PART of this file needs changing since multi domain changes')
     import argparse
     from rlglue.agent.Agent import Agent

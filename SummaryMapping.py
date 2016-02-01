@@ -199,7 +199,7 @@ def _acceptanceListCanBeDiscriminated(acceptanceList, numAccepted, domainUtil):
             discriminatingSlots.add(slot)
         i += 1
 
-    for slot in domainUtil.informable_slots: # TODO - delete-  Settings.ontology['informable']:
+    for slot in domainUtil.informable_slots: 
         if slot != 'name':
             discriminatingSlots.add(slot)
 

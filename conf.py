@@ -75,7 +75,7 @@ master_doc = 'Docs/index'
 
 # General information about the project.
 project = u'CUED Python Dialogue System'
-copyright = u'2015, Dongho Kim, Milica Gasic, Steve Young'
+copyright = u'2015, Dongho Kim, David Vandyke, Lina Rojas, Milica Gasic, Steve Young'
 author = u'Dongho Kim, Milica Gasic, Steve Young'
 
 # The version info for the project you're documenting, acts as replacement for

@@ -80,8 +80,6 @@ class EMRandomConfusionModel(EMConfusionModel):
     :param None:
     '''
     def __init__(self, domainString):
-        #raw_input
-        print('XXXX -- ConfusionModel.py -- below is temporary cheat ... directly passing domainString here for now')
         self.domainUtil = DomainUtils.DomainUtils(domainString)
 
         self.CONFUSE_TYPE = 0.2

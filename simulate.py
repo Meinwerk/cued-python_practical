@@ -84,8 +84,7 @@ try:
        import cPickle as pickle
 except:
        import pickle
-logger = ContextLogger.getLogger('')
-
+logger = ContextLogger.getLogger(__name__)
 
 class SimulationSystem:
     '''Semantic level simulated dialog system
@@ -201,9 +200,6 @@ class SimulationSystem:
             sys_act = self.topic_manager.act_on(sys_act, hyps, constraints)
             print '    Sys >',
             print sys_act
-            # TODO  -- extract turn level features and pass to rnn
-            #if self.evaluator.domainEvaluators.[].success_measure == "rnn":
-            #    pass
             if t > 0: 
                 self.topic_manager.recordReward(reward) 
 
@@ -211,10 +207,6 @@ class SimulationSystem:
                 prompt = self.semoClass.generate(sys_act)
                 print ' Prompt >', prompt
 
-            #TODO - remove - just debug:
-            #if self.currentDomain is not None and previous_domain is not None:
-            #    self.topic_manager._print_belief(self.currentDomain)  #TODO - remove - just for debug this line
-            
             # USER ACT:
             user_act, user_actsDomain = self.simulator.act_on(sys_act)
             print '   User >', user_act
@@ -240,13 +232,8 @@ class SimulationSystem:
                 hyps.append(('null()', 0.001))
                 print '   Semi > null() [0.001]'
 
-            # Track the topic given the user input information (semantic acts or ASR or whatever features...) 
-            # TODO - delete/fix as appropriate
-            logger.debug('simulate.py XXXXX -- HACK! ...temporary-pass domain info directly')
             constraints = self.topic_manager.track_topic(domainString=self.currentDomain, 
                                     previousDomainString=previous_domain, episodeNum=episodeNum) 
-            #constraints = self.topic_manager.track_topic(userAct=user_act, userAct_hyps=hyps)
-            #"""
 
             # MEASURE REWARD AND SUCCESS
             reward = self.evaluator.reward_and_success(domainString=self.currentDomain, 

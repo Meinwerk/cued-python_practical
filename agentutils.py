@@ -93,7 +93,10 @@ def _normaliseandsort(sluhyps):
     sortedhyps.sort(key=lambda x:-x[1])
     total_score = sum(sluhyps.values())
     for hyp, score in sortedhyps:
-        result.append({"score":min(1.0,score/total_score), "slu-hyp":json.loads(hyp)})
+        if total_score==0:
+            result.append({"score":min(0), "slu-hyp":json.loads(hyp)})
+        else:
+            result.append({"score":min(1.0,score/total_score), "slu-hyp":json.loads(hyp)})
     return result
 
 def _transformAct(act, valueTrans,ontology=None, user=True):

@@ -174,10 +174,11 @@ class SimulatedUsersManager():
             if self.domainSimulatedUsers[dstring] is None:
                 self.domainSimulatedUsers[dstring] = CuedUserSimulator(domainString=dstring)
             self.domainSimulatedUsers[dstring].restart(otherDomainsConstraints)
-            #print self.domainSimulatedUsers[dstring].um.goal
-            #print self.domainSimulatedUsers[dstring].um.goal.copied_constraints
-            #print self.domainSimulatedUsers[dstring].um.hdcSim.agenda.agenda_items
-            #print "DOMAIN-----"+dstring
+            # DEBUG prints to inspect goals we have generated:
+            logger.debug(str(self.domainSimulatedUsers[dstring].um.goal))
+            logger.debug(str(self.domainSimulatedUsers[dstring].um.goal.copied_constraints))
+            logger.debug(str(self.domainSimulatedUsers[dstring].um.hdcSim.agenda.agenda_items))
+            logger.debug("DOMAIN-----"+dstring)
             #raw_input('goal and agenda for domain '+dstring)
             if Settings.CONDITIONAL_BEHAVIOUR:
                 otherDomainsConstraints += self.domainSimulatedUsers[dstring].um.goal.constraints

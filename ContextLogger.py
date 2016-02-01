@@ -84,6 +84,7 @@ class bcolors:
 
 class ConsoleFormatter(logging.Formatter):
     def __init__(self,*args, **kwargs) :
+        #NB: import coloredlogs  may also offer a solution
         self.color_choice = bcolors() if kwargs['colors'] in  [True, 'True'] else NOcolors()
         del kwargs['colors'] 
 
@@ -110,6 +111,7 @@ class ConsoleFormatter(logging.Formatter):
             return super(ConsoleFormatter , self).format(record2)
         except TypeError:
             print 'except TypeError: in ContextLogger.ConsoleFormatter(). Known minor issue with message format of logger'
+            # Note: this might be more serious - it may be stopping the individual module logging level specification...
 
 cl = {}             # current set of context loggers indexed by module name
 module_level = {}   # logging level for each logger in cl
@@ -146,10 +148,11 @@ def createLoggingHandlers(config=None, screen_level = "INFO", \
         for option in config.options('logging'):
             if option not in ['usecolor','file', 'file_level', 'screen_level'] and option not in config.defaults():
                 logger_name = option.lower()
-                if logger_name in cl:
-                    cl[logger_name].setLevel(config.get('logging', option))
                 module_level[logger_name] = config.get('logging', option)
-    
+                if logger_name in cl: 
+                    cl[logger_name].setLevel(module_level[logger_name])
+
+                
 
     # configure console output:
     """There was a problem with dumping logger output to file - print() statements and logger comments get separated. 
@@ -323,14 +326,6 @@ def getLogger(name):
         cl[name] = ContextLogger(name)
         if name in module_level:
             cl[name].setLevel(module_level[name])
-
-    # TODO - looking at problems when dumping simulate to file
-    # colour tags are a mess. temp - testing
-    # Delete? - this may not be an answer
-    """
-    import coloredlogs
-    coloredlogs.install(level=logging.INFO)
-    """
 
     return cl[name]
     

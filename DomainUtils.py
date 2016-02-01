@@ -85,6 +85,18 @@ ALLOWED_CODOMAIN_RULES["CamHotels"] = ["TT","CamShop", "CamAttrac","CamTrans"]
 #-----------------------------------------
 
 
+#TODO add these for each domain  - or write something better like a tool to determine this from ontology
+# Note that ALL ONTOLOGIES should be representing binary values as 0,1  (Not true,false for example)
+# These are used to check whether we can process a yes/no response as e.g. an implicit inform(true)
+BINARY_SLOTS = dict.fromkeys(ont_db_pairs.keys())
+BINARY_SLOTS['CamHotels'] = ['hasparking']
+BINARY_SLOTS['SFH'] = ['dogsallowed','hasinternet','acceptscreditcards']
+BINARY_SLOTS['SFR'] = ['allowedforkids']
+BINARY_SLOTS['TSB6'] = ['isforbusinesscomputing']
+BINARY_SLOTS['TSB11'] = ['isforbusinesscomputing']
+BINARY_SLOTS['TSBtele'] = ['usb']
+ 
+
 def checkDomainStrings(domainStrings):
     for dstring in domainStrings:
         if dstring not in available_domains:
@@ -105,7 +117,6 @@ class DomainUtils():
             if Settings.config.has_option('DEFAULT','root'):
                 root = Settings.config.get('DEFAULT','root')
 
-        # TODO - not sure what the point of the below block of code is. remove?
         #------------------------------ 
         #configlist = []
         #if Settings.config.has_section('dbase'):
@@ -266,7 +277,6 @@ class DomainUtils():
         return True
 
     def is_implied(self, slot, value):
-        # TODO
         logger.warning('Currently not implemented: always return False.')
         return False
 

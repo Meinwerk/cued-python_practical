@@ -85,13 +85,6 @@ class ConsoleHub():
         logger.info('--Dialogues over the domains: ', domains)  
 
         configlist = []
-        #TODO - delete - deprecated
-        """
-        self.semi_name = 'PassthroughSemI'
-        if Settings.config.has_option('hub', 'semi'):
-            configlist.append('semi')
-            self.semi_name = Settings.config.get('hub', 'semi')
-        """
         self.semo_name = 'PassthroughSemO'
         if Settings.config.has_option('hub', 'semo'):
             configlist.append('semo')
@@ -105,9 +98,6 @@ class ConsoleHub():
         # [MultiDomain?] Dialogue Management/policy.
         #----------------------------------------- 
         self.topic_manager = TopicManager.TopicManager()
-
-        #TODO - del: Policy.
-        # del: self.system = DMan.DMan(policyFileName)
 
         # SemI.
         self.semi = SemI.SemIManager()
@@ -137,7 +127,6 @@ class ConsoleHub():
         while True:
             print ''
             print 'Turn', t
-            # TODO del: lastSysAct = self.system.act_on(lastSysAct, lastHyps)
             lastSysAct = self.topic_manager.act_on(lastSysAct, lastHyps)
             print 'Sys    >', lastSysAct
 
@@ -180,12 +169,7 @@ class ConsoleHub():
             #     print 'Semi > null() [0.001]'
             #--------------------------------
 
-            # Track the topic given the user input information (semantic acts or ASR or whatever features...) 
-            # TODO - delete/fix as appropriate
-            logger.debug('simulate.py XXXXX -- HACK! ...temporary-pass domain info directly')
             self.topic_manager.track_topic(domainString=self.currentDomain) 
-            #self.topic_manager.track_topic(userAct=user_act, userAct_hyps=hyps)
-            #"""
 
             t += 1
 
@@ -195,10 +179,13 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='TextHub')
     parser.add_argument('-C', '--config', help='set config file', required=True, type=argparse.FileType('r'))
     parser.add_argument('-s', '--seed', help='set random seed', type=int)
+    parser.set_defaults(use_color=True)
+    parser.add_argument('--nocolor', dest='use_color',action='store_false', help='no color in logging. best to\
+                        turn off if dumping to file. Will be overriden by [logging] config setting of "usecolor=".')
     args = parser.parse_args()
 
     Settings.load_config(args.config.name)
-    ContextLogger.createLoggingHandlers(Settings.config)
+    ContextLogger.createLoggingHandlers(Settings.config, use_color=args.use_color)
 
     Settings.set_seed(args.seed)
 

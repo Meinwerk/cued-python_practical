@@ -123,9 +123,7 @@ class UMAgenda():
         """
 
         for dact in goal.copied_constraints:
-            print dact.slot, dact.op, dact.val
             uniform_sample = Settings.random.uniform()
-            print uniform_sample
             if uniform_sample < self.CONFIRM:
                 # TODO - remove/change this - 
                 # Decided this doesn't make sense - (so set self.CONFIRM=0) - info is in belief state, that is enough.
@@ -663,7 +661,7 @@ class UM():
 
         self.lastUserAct = None
         self.lastSysAct = None
-        self.hdcSim.init(self.goal)  #TODO - thurs - look at conditional generation of agenda as well.
+        self.hdcSim.init(self.goal)  #uses infor in self.goal to do conditional generation of agenda as well.
 
     def receive(self, sys_act):
         '''
