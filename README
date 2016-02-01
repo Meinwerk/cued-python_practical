@@ -6,14 +6,6 @@
   sudo easy_install pip
   pip install -r requirements.txt
 
-* Belief trackers.
-  Belief trackers are implemented in the original vocaliq repository, so please create symbolic links
-  in the root directory of vocaliq-python as follows:
-    1. for Baseline and Focus Baseline tracker:
-       ln -s vocaliq/corpustools/DST/scripts DST
-    2. for RNN tracker:
-       ln -s vocaliq/corpustools/discDST/discriminative .
-
 * Executable scripts. See help messages by giving -h option.
   simulate.py   Generate dialogues with simulated users.
   texthub.py    Text interface
