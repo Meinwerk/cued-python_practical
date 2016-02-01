@@ -1,3 +1,25 @@
+#########################################################
+# CUED Python Statistical Spoken Dialogue System Software
+#########################################################
+#
+# Copyright 2015-16  Cambridge University Engineering Department 
+# Dialogue Systems Group
+#
+# Principal Authors:  Dongho Kim and David Vandyke
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#########################################################
+
 '''
 MCCPolicy.py - Monte Carlo Control algorithm on grid-based dialogue state
 ============================================
@@ -8,10 +30,11 @@ Author: Pei-Hao (Eddy) Su  (Copyright CUED Dialogue Systems Group 2015)
 **Relevant Config variables** [Default values]::
 
     [mccpolicy]
-    kernel = polysort
-    thetafile = ''
-    revertfile = ''
-    replacefile = ''
+    gamma = 1.0
+    nu = 0.0001
+    epsilon_start = 1.0
+    epsilon_end = 0.1
+    maxIter = 2000
 
 .. seealso:: CUED Imports/Dependencies: 
 
@@ -104,15 +127,15 @@ class MCCPolicy(Policy.Policy):
         if Settings.config.has_option('mccpolicy_'+domainUtil.domainString, 'nu'):
             self.nu = Settings.config.getfloat('mccpolicy_'+domainUtil.domainString, 'nu')
         
-        self.epsilon_start = 0.1
+        self.epsilon_start = 1.0
         if Settings.config.has_option('mccpolicy_'+domainUtil.domainString, 'epsilon_start'):
             self.epsilon_start = Settings.config.getfloat('mccpolicy_'+domainUtil.domainString, 'epsilon_start')
         
-        self.epsilon_end = 0.01
+        self.epsilon_end = 0.1
         if Settings.config.has_option('mccpolicy_'+domainUtil.domainString, 'epsilon_end'):
             self.epsilon_end = Settings.config.getfloat('mccpolicy_'+domainUtil.domainString, 'epsilon_end')
         
-        self.maxIter = 5000
+        self.maxIter = 2000
         if Settings.config.has_option('mccpolicy_'+domainUtil.domainString, 'maxIter'):
             self.maxIter = Settings.config.getfloat('mccpolicy_'+domainUtil.domainString, 'maxIter')
 
