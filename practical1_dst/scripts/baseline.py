@@ -326,6 +326,8 @@ class FocusTracker(object):
         # goal, method, and requested slot.                                 #
         # Follow the description of the focus tracker in the practical note.#
         #####################################################################
+            
+        # HINT: See section 4.3.2 in the handout for useful information
 
         # --- 1. goal --- #
         for slot in this_u.keys() + hyps["goal-labels"].keys() :
