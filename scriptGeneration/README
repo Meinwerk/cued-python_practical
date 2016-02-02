@@ -1,6 +1,6 @@
 Summary:
     usage:
-        python script_train.py list_train
+        python script_train.py list_train <- list_train is the gnerated list of different parameter settings
         python script_test.py list_test
 
 
@@ -9,7 +9,7 @@ Summary:
 Files in this script generation directory:
 
 --SCRIPT--
-script_train.py         - trainig script generator, set your desired parameter settings
+script_train.py         - training script generator, set your desired parameter settings
 script_test.py          - testing script generator, set your desired parameter settings
 
 

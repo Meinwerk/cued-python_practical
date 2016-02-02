@@ -56,7 +56,7 @@ Practical 2 - Monte Carlo Control Policy:
 
 Implement the episode generation and Q value update parts in the codes to optimise the system in interaction with the simulated user under error rate 15% (-r 15). 
 
-1. examine the influence of the specification parameter nu and plot the learning curve of task success along with the training dialogues (show the averaged testing results of 100 dialogues after every 200 training dialogues, up to 2000 training dialogues).
+1. examine the influence of the specification parameter nu and plot the learning curve of task success along with the training dialogues (show the averaged testing results of 100 dialogues after every 100 training dialogues, up to 1000 training dialogues).
 
 2. show up to 20 lines of the code you implement.
 
@@ -70,7 +70,7 @@ Practical 3 - Gaussian Process SARSA Policy:
 
 Implement the sparcification criterion part in the code to complete the GP-SARSA algorithm with the threshold v=0.01 under error rate 15% (-r 15).
 
-1. Use linear kernel function with sigma=5 and compare the its success rate learning curve to the MCC algorithm (show the averaged success rate results of 100 dialogues after every 200 training dialogues, up to 2000 training dialogues).
+1. Use linear kernel function with sigma=5 and compare the its success rate learning curve to the MCC algorithm (show the averaged success rate results of 100 dialogues after every 100 training dialogues, up to 1000 training dialogues).
 
 2. (Optional) Use Gaussian kernel function and see the performance by tuning the parameters p and l and compare its success rate learning curve results with the linear kernel GP-SARSA and MCC algorithm.
 

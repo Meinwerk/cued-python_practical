@@ -146,7 +146,7 @@ def main():
 	###  General policy information
 	################################################
         bcm             = 'False' 
-        belieftype      = 'baseline' # 'focus'
+        belieftype      = 'focus' #'baseline'
         useconfreq      = 'False'
         policytype_vary = ['mcc', 'gp']
         startwithhello  = 'True'
