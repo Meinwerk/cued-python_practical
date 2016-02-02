@@ -306,12 +306,18 @@ class FocusTracker(object):
         discourseAct_stats = defaultdict(float)
         for score, uact in slu_hyps :
             informed_goals, denied_goals, requested, method, discourseAct, self.lastInformedVenue = labels(uact, mact, self.lastInformedVenue)
-            method_stats[method] += score
-            for slot in requested:
-                requested_slot_stats[slot] += score
+            
             # goal_labels
             for slot in informed_goals:
                 this_u[slot][informed_goals[slot]] += score
+            
+            # methods
+            method_stats[method] += score
+            
+            # requested slots
+            for slot in requested:
+                requested_slot_stats[slot] += score
+            
             discourseAct_stats[discourseAct] += score
         
         #####################################################################
