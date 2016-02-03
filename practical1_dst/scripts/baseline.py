@@ -335,8 +335,11 @@ class FocusTracker(object):
                 hyps["goal-labels"][slot] = {}
 
             # your code here, modify the following update rule
-            for value in hyps["goal-labels"][slot] :
-                hyps["goal-labels"][slot][value] = 0.0
+            q_c_t = max(0, 1. - sum(this_u[slot].values()))
+            for value in this_u[slot].keys():
+                hyps["goal-labels"][slot][value] = this_u[slot][value]
+                if slot in self.hyps["goal-labels"] and value in self.hyps["goal-labels"][slot]:
+                    hyps["goal-labels"][slot][value] += q_c_t * self.hyps["goal-labels"][slot][value]
 
             # normalise the score of each value in a slot
             hyps["goal-labels"][slot] = normalise_dict(hyps["goal-labels"][slot])
@@ -347,8 +350,11 @@ class FocusTracker(object):
         method_label = hyps["method-label"]
 
         # your code here, modify the following update rule
-        for method in method_label:
-            method_label[method] = 0.0
+        q_c_t = max(0, 1. - sum(method_stats.values()))
+        for method in method_stats.keys():
+            method_label[method] = method_stats[method]
+            if method in self.hyps["method-label"]:
+                method_label[method] += q_c_t * self.hyps["method-label"][method]
 
         # normalise the score
         hyps["method-label"] = normalise_dict(method_label)
@@ -362,15 +368,17 @@ class FocusTracker(object):
                 for slot,value in act["slots"]:
                     informed_slots.append(slot)
 
+        q_c_t = max(0, 1. - sum(requested_slot_stats.values()))
         for slot in (requested_slot_stats.keys() + hyps["requested-slots"].keys()):
             p = requested_slot_stats[slot]
 
             # your code here
+            if slot in informed_slots:
+                p += q_c_t * self.hyps["requested-slots"][slot]
 
             # clip the score
             hyps["requested-slots"][slot] = clip(p)
         # ----------------------- #
-
 
         self.hyps = hyps
         return self.hyps
