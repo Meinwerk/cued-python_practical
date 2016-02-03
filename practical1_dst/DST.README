@@ -18,7 +18,7 @@ practical1_dst/
 
 *** Running and evaluating the trackers ***
 
-Under the directory: 
+Under the directory:
     cued-python_practical/practical1_dst/
 
 - run baseline tracker:
@@ -29,7 +29,7 @@ python scripts/baseline.py --dataset dstc2_data --dataroot data --trackfile base
 
 python scripts/baseline.py --dataset dstc2_data --dataroot data --trackfile baseline.json --focus True
 
-This will create a file baseline.json with a tracker output object. 
+This will create a file baseline.json with a tracker output object.
 
 
 
@@ -45,7 +45,7 @@ This creates a file baseline.score.csv which lists all the metrics interested.
 
 python scripts/report.py --scorefile baseline.score.csv
 
-This prints out several tables, including the featured metrics table. 
+This prints out several tables, including the featured metrics table.
 The following table is the result of baseline tracker.
 
                                     featured metrics
