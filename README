@@ -38,9 +38,9 @@
     useconfreq: boolean. If true the policy is allowed to add a venue count in system actions,
       e.g. inform(count=20, food=chinese). This addition happens in summary-master mapping.
 	policytype: string. 'hdc' for handcrafted policy (default), 'type' for text-input manual policy, 'gp' for gp policy and
-	  'nn' for neural-network policy.
-    belieftype: string. 'rnn' for recurrent neural net tracker (default). 'baseline' for baseline tracker and
-      'focus' for focus baseline tracker.
+	  'mcc' for monte carlo control policy.
+    belieftype: string. 'rnn' for recurrent neural net tracker. 'baseline' for baseline tracker and
+      'focus' for focus baseline tracker (default).
     startwithhello: boolean. If true the first action will be 'hello()'.
     bcm: boolean. If true the system is using a policy committee
     currpolicy: int. learning committee member
@@ -74,6 +74,13 @@
     answerreqalways: boolean.
 
   [nnpolicy] neural net policy.
+
+  [mccpolicy] mcc policy
+    gamma: float. 1.0 by default
+    nu: float. 0.0001 by default
+    epsilon_start: float. 1.0 by default
+    epsilon_end: float. 0.1 by default
+    maxIter: float. 2000 by default
 
   [gppolicy] gp policy
     kernel: string. 'polysort' by default

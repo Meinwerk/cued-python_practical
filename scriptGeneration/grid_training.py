@@ -84,7 +84,7 @@ def getGlobalandLocalPolicies(configs, term="inpolicyfile"):
 # SCRIPT:
 #-----------------------------------------
 if len(sys.argv)<6:
-    print "usage: grid_pyGPtraining.py totaldialogues step pathtoexecutable errorrate config1 config2 config3..."
+    print "usage: grid_training.py totaldialogues step pathtoexecutable errorrate config1 [config2 config3...]"
     exit(1)
 
 

@@ -1,3 +1,7 @@
+Useful scripts for generating running commands
+
+Author: Pei-Hao (Eddy) Su  (Copyright CUED Dialogue Systems Group 2015)
+
 Summary:
     usage:
         python script_train.py list_train <- list_train is the gnerated list of different parameter settings
@@ -8,25 +12,70 @@ Summary:
 
 Files in this script generation directory:
 
---SCRIPT--
-script_train.py         - training script generator, set your desired parameter settings
-script_test.py          - testing script generator, set your desired parameter settings
+--SCRIPTS--
 
+    * script_train.py         - training script generator, set your desired parameter settings
+    * script_test.py          - testing script generator, set your desired parameter settings
 
-grid_training.py        - given total training iterations, call grid_training.py
-grid_testing.py         - given total testing  iterations, call grid_testing.py
+    EXAMPLE: 
+        python script_train.py list 
+            -> list_is the gnerated list including different parameter settings
 
+    -------------------------------------------
 
-run_grid_training.py    - called by grid_training.py, call simulate.py
-run_grid_testing.py     - called by grid_testing.py, call simulate.py 
+    * run_grid_training.py        - given total training iterations, can be called by script_train.py, call grid_training.py
+    * run_grid_testing.py         - given total testing  iterations, can be called by script_testing.py, call grid_testing.py
+
+    USAGE:
+        training:
+            python run_grid_training.py dirname steps numdialoguesperstep parallelprocesses path errorrate stepfromwhichtocontinue config1 [config2, ..]
+        testing:
+            python run_grid_testing.py dirname appendixname steps numdialoguesperstep parallelprocesses path errorrate stepfromwhichtocontinue config1 [config2, ..]
+
+    EXAMPLE:
+        training:
+            python run_grid_training.py TopTable_mcc 10 100 1 /home/gphs26/cued-python_practical/ 15 1 /home/phs26/cued-python_practical/config/simulate_mcc_train.cfg
+        testing:
+            python run_grid_testing.py TopTable_mcc TEST 10 100 1 /home/gphs26/cued-python_practical/ 15 1 /home/phs26/cued-python_practical/config/simulate_mcc_train.cfg
+
+    -------------------------------------------
+
+    * grid_training.py    - called by grid_training.py, call simulate.py
+    * grid_testing.py     - called by grid_testing.py, call simulate.py 
+
+    USAGE:
+        training:
+            python grid_training.py totaldialogues step pathtoexecutable errorrate config1 [config2 config3...]
+        testing:
+            python grid_testing.py totaldialogues step pathtoexecutable errorrate config1 [config2 config3...]
+
+    EXAMPLE:
+        training:
+            python grid_training.py 100 10 /home/gphs26/cued-python_practical/ 15 /home/phs26/cued-python_practical/config/simulate_mcc_train.cfg
+        testing:
+            python grid_testing.py 100 10 /home/gphs26/cued-python_practical/ 15 /home/phs26/cued-python_practical/config/simulate_mcc_train.cfg
+
 
 --TOOL--
-parseResults.py         - print out training/testing results
-                        - execute it without any arguments for command example
+    * parseResults.py         - print out training/testing results
+
+    USAGE:
+        training:
+            python parseResults.py dirname logFilePrefix logFileFormat 1
+        testing:
+            python parseResults.py dirname logFilePrefix logFileFormat 1 TEST
+
+    EXAMPLE:
+        training:
+            python parseResults.py gRun tra_1_ .log 1
+        testing:
+            python parseResults.py gRun tra_1_ .log 1 TEST
+
+
 
 -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
-INSTRUCTION:
+INSTRUCTION FOR RUNNING SCRIPT IN YOUR OWN MACHINE/GRIDMACHINE:
 
 
 STEP 1:

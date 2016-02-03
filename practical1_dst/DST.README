@@ -1,5 +1,7 @@
 MLSALT9 practical 1 - Dialogue State Tracker implementation
 
+Author: Pei-Hao (Eddy) Su  (Copyright CUED Dialogue Systems Group 2015)
+
 *** Directory and files ***
 
 practical1_dst/
@@ -15,7 +17,10 @@ practical1_dst/
                ontology_dstc2.json  # ontology
 
 *** Running and evaluating the trackers ***
- 
+
+Under the directory: 
+    cued-python_practical/practical1_dst/
+
 - run baseline tracker:
 
 python scripts/baseline.py --dataset dstc2_data --dataroot data --trackfile baseline.json

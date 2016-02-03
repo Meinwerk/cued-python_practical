@@ -1,21 +1,29 @@
 MLSALT9 practical 2,3 - Dialogue Policy implementation
 
+Author: Pei-Hao (Eddy) Su  (Copyright CUED Dialogue Systems Group 2015)
+
 *** Directory and files ***
 
-cued-python/policy/
-    DM.README       # instruction and commands 
-    MCCPolicy.py    # Monto Carlo Control poliy       <- for practical 2
-    GPPolicy.py     # Gaussian Process poliy          <- for practical 3
-    GPLib.py        # Gaussian Process policy library <- for practical 3
+cued−python practical/ 
+    policy/
+        DM.README       # instruction and commands 
+        MCCPolicy.py    # Monto Carlo Control poliy         <- for practical 2
+        GPPolicy.py     # Gaussian Process poliy            <- for practical 3
+        GPLib.py        # Gaussian Process policy library   <- for practical 3
+    config/
+        simulate_∗. cfg # configurations
+    scripGeneration/
+        README          # instruction and commands
+        script ∗.py     # generate training/testing 
+        script run grid ∗.py # run grid training/testing .py 
+        grid ∗.py       # run simulate.py
 
 *** Training and evaluating the policy with a simulated user ***
 
 
+In directory cued-python_practical/, you can find simulate.py:
 
-In directory cued-python/, you can find simulate.py:
-
-usage: simulate.py [-h] -C CONFIG [-n NUMBER] [-r ERROR] [--nocolor] [-g]
-                   [-s SEED]
+usage: simulate.py [-h] -C CONFIG [-n NUMBER] [-r ERROR] [--nocolor] [-g] [-s SEED]
 
 example: 
     python simulate.py -C config/simulate_mcc_train.cfg -r 15 -n 10
@@ -31,7 +39,7 @@ example:
 Training/testing, mcc/gp modes, input/output files and parameter settings are determined in the configuration file.
 
 !!!!!!!!!!!!!
-Please see directory scriptGeneration/ for running script generation and execution.
+Please see the bottom for more useful information.
 !!!!!!!!!!!!!
 
 The following is an example averaged results of 10 training dialogues:
@@ -60,8 +68,7 @@ Implement the episode generation and Q value update parts in the codes to optimi
 
 2. show up to 20 lines of the code you implement.
 
-Please implement it in the file: MCCPolicy.py, where the TODO sections are highlighted.
-
+Please refer to DM.README and scriptGeneration/README for more com- mands and requirement details and see the file: MCCPolicy.py, where the TODO sections are highlighted and hints are provides.
 
 
 ----------------------------------------------
@@ -76,4 +83,28 @@ Implement the sparcification criterion part in the code to complete the GP-SARSA
 
 3. show up to 20 lines of the code you implement.
   
-Please see the file: GPLib.py, where the TODO sections are highlighted.
+Please refer to DM.README and scriptGeneration/README for more com- mands and requirement details and see the file: GPLib.py, where the TODO sections are highlighted and hints are provides.
+
+
+
+!!!!!!!!!!!!!
+Useful information:
+
+Regarding running and testing dialogue using simulate.py in question 1.
+The example procedure is:
+
+    inpolicyfile = ''
+    for $i = 1 to 10:
+        1. python simulate.py -C config/simulate_mcc_train.cfg -r 15 -n 100 (in .cfg, inpolicyfile = mcc_policy_$(i-1), outpolicyfile = mcc_policy_$i)
+            -> run 100 training dialogues with user simulator and save the policy to file mcc_policy1
+        2. python simulate.py -C config/simulate_mcc_test.cfg  -r 15 -n 100 (in .cfg, inpolicyfile = mcc_policy_$i)
+            -> run 100 testing dialogues with user simulator with the policy to load from file mcc_policy_$i
+    end for
+
+It will cost some time to manually set the input and output policy file in the .cfg, 
+
+Here we provide useful scripts in the directory scriptGeneration/ to run the whole procedure within few command. 
+
+Please see directory scriptGeneration/ for running script generation and execution.
+!!!!!!!!!!!!!
+

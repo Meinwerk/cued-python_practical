@@ -56,7 +56,7 @@ def submitJob(command):
 # Script:
 #-----------------------------------------
 if len(sys.argv) < 8:
-    print "usage: grid_training.py dirname steps numdialoguesperstep parallelprocesses path errorrate stepfromwhichtocontinur config1 [config2, ..]"
+    print "usage: run_grid_training.py dirname steps numdialoguesperstep parallelprocesses path errorrate stepfromwhichtocontinue config1 [config2, ..]"
     exit(1)
 
 name = sys.argv[1]
