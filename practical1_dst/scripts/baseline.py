@@ -351,11 +351,11 @@ class FocusTracker(object):
         method_label = hyps["method-label"]
 
         # your code here, modify the following update rule
-        q_c_t = clip(1. - sum(method_stats.values()))
-        for method in method_stats.keys():
+        q_t = clip(1. - sum(method_stats.values()))
+        for method in method_stats.keys() + method_label.keys():
             method_label[method] = method_stats[method]
             if method in self.hyps["method-label"]:
-                method_label[method] += q_c_t * self.hyps["method-label"][method]
+                method_label[method] += q_t * self.hyps["method-label"][method]
 
         # normalise the score
         hyps["method-label"] = normalise_dict(method_label)
@@ -369,17 +369,19 @@ class FocusTracker(object):
                 for slot,value in act["slots"]:
                     informed_slots.append(slot)
 
-        q_c_t = clip(1. - sum(requested_slot_stats.values()))
-        for slot in (requested_slot_stats.keys() + hyps["requested-slots"].keys()):
+        for slot in requested_slot_stats.keys() + hyps["requested-slots"].keys():
             p = requested_slot_stats[slot]
 
             # your code here
+            q_c_t = 1-p
             if slot in informed_slots:
+                # clear requested-slots that have been informed
+                p = 0.0
+            elif slot in self.hyps["requested-slots"]:
                 p += q_c_t * self.hyps["requested-slots"][slot]
 
             # clip the score
             hyps["requested-slots"][slot] = clip(p)
-        slu_hyps = Uacts(turn)
         # ----------------------- #
 
         self.hyps = hyps

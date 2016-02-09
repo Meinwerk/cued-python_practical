@@ -63,7 +63,7 @@ and the initial result of focus tracker (before implementation):
 --------------------------------------------------------------------
               |   Joint Goals   |    Requested    |      Method    |
 --------------------------------------------------------------------
-Accuracy      |    0.0097087    |    0.9365482    |    0.0000000   | # joint goal should be ~74
+Accuracy      |    0.0097087    |    0.9365482    |    0.0000000   |
 l2            |    1.9805825    |    0.0922728    |    2.0000000   |
 roc.v2_ca05   |    0.0000000    |    0.0027100    |        -       |
 
@@ -71,6 +71,15 @@ roc.v2_ca05   |    0.0000000    |    0.0027100    |        -       |
 
 Complete the focus dialogue state tracker and compare its performance with the baseline tracker on the provided partial DSTC2 dataset (show only the featured metrics result).
 Show up to 20 lines of the code relating to the parameter update of the focus tracker.
+
+                                    featured metrics
+--------------------------------------------------------------------
+              |   Joint Goals   |    Requested    |      Method    |
+--------------------------------------------------------------------
+Accuracy      |    0.7323162    |    0.9162437    |    0.5492372   |
+l2            |    0.4212595    |    0.1194034    |    0.7911165   |
+roc.v2_ca05   |    0.0000000    |    0.5623269    |    0.0000000   |
+
 
 Please implement in the starter code: baseline.py, where section TODO is labelled.
 
