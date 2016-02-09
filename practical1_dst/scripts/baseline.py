@@ -335,9 +335,10 @@ class FocusTracker(object):
                 hyps["goal-labels"][slot] = {}
 
             # your code here, modify the following update rule
-            q_c_t = max(0, 1. - sum(this_u[slot].values()))
+            q_c_t = clip(1. - sum(this_u[slot].values()))
             for value in this_u[slot].keys() + hyps["goal-labels"][slot].keys():
                 hyps["goal-labels"][slot][value] = this_u[slot][value]
+                # combine with previous belief state weighted by q_c_t (if available)
                 if slot in self.hyps["goal-labels"] and value in self.hyps["goal-labels"][slot]:
                     hyps["goal-labels"][slot][value] += q_c_t * self.hyps["goal-labels"][slot][value]
 
@@ -350,7 +351,7 @@ class FocusTracker(object):
         method_label = hyps["method-label"]
 
         # your code here, modify the following update rule
-        q_c_t = max(0, 1. - sum(method_stats.values()))
+        q_c_t = clip(1. - sum(method_stats.values()))
         for method in method_stats.keys():
             method_label[method] = method_stats[method]
             if method in self.hyps["method-label"]:
@@ -368,7 +369,7 @@ class FocusTracker(object):
                 for slot,value in act["slots"]:
                     informed_slots.append(slot)
 
-        q_c_t = max(0, 1. - sum(requested_slot_stats.values()))
+        q_c_t = clip(1. - sum(requested_slot_stats.values()))
         for slot in (requested_slot_stats.keys() + hyps["requested-slots"].keys()):
             p = requested_slot_stats[slot]
 
@@ -378,6 +379,7 @@ class FocusTracker(object):
 
             # clip the score
             hyps["requested-slots"][slot] = clip(p)
+        slu_hyps = Uacts(turn)
         # ----------------------- #
 
         self.hyps = hyps
