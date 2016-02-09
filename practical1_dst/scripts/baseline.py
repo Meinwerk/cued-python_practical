@@ -336,7 +336,7 @@ class FocusTracker(object):
 
             # your code here, modify the following update rule
             q_c_t = max(0, 1. - sum(this_u[slot].values()))
-            for value in this_u[slot].keys():
+            for value in this_u[slot].keys() + hyps["goal-labels"][slot].keys():
                 hyps["goal-labels"][slot][value] = this_u[slot][value]
                 if slot in self.hyps["goal-labels"] and value in self.hyps["goal-labels"][slot]:
                     hyps["goal-labels"][slot][value] += q_c_t * self.hyps["goal-labels"][slot][value]
