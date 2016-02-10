@@ -354,6 +354,7 @@ class MCCPolicy(Policy.Policy):
 
             # HINT: 1. admissible list are executable action given a belief
             #       2. use the function self.findClosest(b,a)
+            #       3. use flat_belief (type: list) instead of belief (type: dict), and pass it to function 'findClosest'
 
             # your code here...
             # choose the action index with the highest corresponding Q given a belief b

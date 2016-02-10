@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #########################################################
 # CUED Python Statistical Spoken Dialogue System Software
 #########################################################
@@ -5,7 +7,7 @@
 # Copyright 2015-16  Cambridge University Engineering Department 
 # Dialogue Systems Group
 #
-# Principal Authors:  Dongho Kim and David Vandyke
+# Principal Authors:  Dongho Kim and David Vandyke, Pei-Hao (Eddy) Su
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,7 +22,6 @@
 # limitations under the License.
 #########################################################
 
-#!/usr/bin/env python
 
 import os
 import sys

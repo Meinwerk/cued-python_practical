@@ -5,7 +5,7 @@
 # Copyright 2015-16  Cambridge University Engineering Department 
 # Dialogue Systems Group
 #
-# Principal Authors:  Dongho Kim and David Vandyke
+# Principal Authors:  Dongho Kim and David Vandyke, Pei-Hao (Eddy) Su
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -606,7 +606,8 @@ class GPSARSA(GPSARSAPrior):
         delta_new = 0.0 if self.terminal else (current_kernel - estimate_kernel)
 
         ## END TODO ##
-        
+       
+        k_tilda_new = self.k_tilda(state, action, kernel)
         _a_new = g_new
 
 

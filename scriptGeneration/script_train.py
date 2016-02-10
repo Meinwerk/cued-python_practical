@@ -5,7 +5,7 @@
 # Copyright 2015-16  Cambridge University Engineering Department 
 # Dialogue Systems Group
 #
-# Principal Authors:  Dongho Kim and David Vandyke
+# Principal Authors:  Dongho Kim and David Vandyke, Pei-Hao (Eddy) Su
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -148,7 +148,7 @@ def main():
         bcm             = 'False' 
         belieftype      = 'baseline' 
         useconfreq      = 'False'
-        policytype_vary = ['mcc', 'gp']
+        policytype_vary = ['mcc']#, 'gp']
         startwithhello  = 'True'
         inpolicyfile    = 'policyFile'
         outpolicyfile   = 'policyFile'
