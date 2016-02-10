@@ -331,6 +331,7 @@ class FocusTracker(object):
 
         # --- 1. goal --- #
         for slot in this_u.keys() + hyps["goal-labels"].keys() :
+            q = max(0.0,1.0-sum([this_u[slot][value] for value in this_u[slot]])) # clipping at zero because rounding errors
             if slot not in hyps["goal-labels"] :
                 hyps["goal-labels"][slot] = {}
         

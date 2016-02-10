@@ -39,7 +39,8 @@ def getJobNum(output):
     return jobNum
 
 def formCommand(queuedest, parproc, name, appendixname, configs, dialogues, step, path, erorrrate):
-    command = "qsub -q {} -e {}.e.log -o {}.o.log -t 1-{} -S /usr/bin/env {}_{}.py {} {} {} {}".format(queuedest, name, name, parproc, name, appendixname, dialogues, step, path, errorrate)
+    #command = "qsub -q {} -e {}.e.log -o {}.o.log -t 1-{} -S /usr/bin/env {}_{}.py {} {} {} {}".format(queuedest, name, name, parproc, name, appendixname, dialogues, step, path, errorrate)
+    command = "qsub -e {}.e.log -o {}.o.log -t 1-{} -S /usr/bin/env {}_{}.py {} {} {} {}".format(name, name, parproc, name, appendixname, dialogues, step, path, errorrate)
     for config in configs:
         command = command+" "+config
     return command
@@ -116,7 +117,8 @@ if hostname != 'krakow':
     # SUBMIT THE foo.sh START DUMMY JOB.  ---------------------
     #queuedest="all.q@air063,all.q@divfproj-fs"
     queuedest=""
-    command="qsub -q {} -e {}.e.log -o {}.o.log -S /bin/bash foo.sh".format(queuedest,name,name)
+    #command="qsub -q {} -e {}.e.log -o {}.o.log -S /bin/bash foo.sh".format(queuedest,name,name)
+    command="qsub -e {}.e.log -o {}.o.log -S /bin/bash foo.sh".format(name,name)
     jobNum=submitJob(command)
     jobsFile.write("{}\n".format(jobNum));
 

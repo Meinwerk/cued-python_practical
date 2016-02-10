@@ -1,0 +1,9 @@
+# Tell git to ignore these files
+*.pyc
+.idea
+*.swp
+DST
+_build
+.gitignore
+_gptraining/
+_*

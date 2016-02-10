@@ -39,7 +39,8 @@ def getJobNum(output):
     return jobNum
 
 def formCommand(queuedest, parproc, jobNum, name, configs, dialogues, step, path, erorrrate):
-    command = "qsub -q {} -e {}.e.log -o {}.o.log -t 1-{} -hold_jid {} -S /usr/bin/env {}.py {} {} {} {}".format(queuedest, name, name, parproc, jobNum, name, dialogues, step, path, errorrate)
+    #command = "qsub -q {} -e {}.e.log -o {}.o.log -t 1-{} -hold_jid {} -S /usr/bin/env {}.py {} {} {} {}".format(queuedest, name, name, parproc, jobNum, name, dialogues, step, path, errorrate)
+    command = "qsub -e {}.e.log -o {}.o.log -t 1-{} -hold_jid {} -S /usr/bin/env {}.py {} {} {} {}".format(name, name, parproc, jobNum, name, dialogues, step, path, errorrate)
     for config in configs:
         command = command+" "+config
     return command
@@ -110,7 +111,8 @@ if hostname != 'krakow':
     #queuedest="all.q@air063,all.q@divfproj-fs"
     queuedest =""
 
-    command="qsub -q {} -e {}.e.log -o {}.o.log -S /bin/bash foo.sh".format(queuedest,name,name)
+    #command="qsub -q {} -e {}.e.log -o {}.o.log -S /bin/bash foo.sh".format(queuedest,name,name)
+    command="qsub -e {}.e.log -o {}.o.log -S /bin/bash foo.sh".format(name,name)
     jobNum=submitJob(command)
     jobsFile.write("{}\n".format(jobNum));
 
