@@ -77,18 +77,7 @@ Files in this script generation directory:
 
 INSTRUCTION FOR RUNNING SCRIPT IN YOUR OWN MACHINE/GRIDMACHINE:
 
-
 STEP 1:
-***** check your host name *****
-
-example:
-
->>> import socket
->>> print(socket.gethostname())
-krakow
-********************************
-
-STEP 2:
 ***** customise your scripts *****
 
 In
@@ -98,9 +87,4 @@ In
 -> for line 95,97: set your own config path
 -> for line 119: replace root directory with your own path.
 
-In 
-    grid_training.py:
-    grid_testing.py:    
-
--> checking your host name by step 1, replace 'krakow' with it.
 
