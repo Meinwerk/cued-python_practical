@@ -39,9 +39,10 @@ def getJobNum(output):
         jobNum=jobNum.split('.')[0]
     return jobNum
 
-def formCommand(queuedest, parproc, name, appendixname, configs, dialogues, step, path, erorrrate):
+def formCommand(queuedest, parproc, name, appendixname, configs, dialogues, step, path, erorrrate, currentPath):
     #command = "qsub -q {} -e {}.e.log -o {}.o.log -t 1-{} -S /usr/bin/env {}_{}.py {} {} {} {}".format(queuedest, name, name, parproc, name, appendixname, dialogues, step, path, errorrate)
-    command = "qsub -e {}.e.log -o {}.o.log -t 1-{} -S /usr/bin/env {}_{}.py {} {} {} {}".format(name, name, parproc, name, appendixname, dialogues, step, path, errorrate)
+    command = "qsub -e {}/{}.e.log -o {}/{}.o.log -t 1-{} -S /usr/bin/env {}/{}_{}.py {} {} {} {} {}".format(currentPath+'/'+name+'_'+appendixname,name, currentPath+'/'+name+'_'+appendixname, name, \
+		parproc, currentPath+'/'+name+'_'+appendixname, name, appendixname, dialogues, step, path, errorrate,currentPath+'/'+name+'_'+appendixname)
     for config in configs:
         command = command+" "+config
     return command
@@ -89,13 +90,16 @@ while i<len(sys.argv):
     configs.append(sys.argv[i])
     i+=1
 
+
+currentPath = os.getcwd()
+currentPath = currentPath.replace('/export/home/mlsalt-helpers/','/home/')
 if beginning == 1:
-    command="mkdir {}_{}".format(name,appendixname)
+    command="mkdir {}/{}_{}".format(currentPath,name,appendixname)
     Execute(command)
     for config in configs:
-        command="cp {} {}_{}".format(config,name,appendixname)
+        command="cp {}/{} {}/{}_{}".format(currentPath,config,currentPath,name,appendixname)
         Execute(command)
-    command="cp grid_testing.py {}_{}/{}_{}.py".format(name,appendixname,name,appendixname)
+    command="cp grid_testing.py {}/{}_{}/{}_{}.py".format(currentPath,name,appendixname,name,appendixname)
     Execute(command)
 
     command="cp {}/*prm* {}_{}/".format(name,name,appendixname)
@@ -106,6 +110,9 @@ if beginning == 1:
     Execute(command)
 else:
     print "Starting from ",beginning
+
+command = "cp foo.sh {}/".format(name)
+Execute(command)
 
 command="./{}_{}".format(name,appendixname)
 print command
@@ -119,7 +126,7 @@ if hostname != 'krakow':
     #queuedest="all.q@air063,all.q@divfproj-fs"
     queuedest=""
     #command="qsub -q {} -e {}.e.log -o {}.o.log -S /bin/bash foo.sh".format(queuedest,name,name)
-    command="qsub -e {}.e.log -o {}.o.log -S /bin/bash foo.sh".format(name,name)
+    command="qsub -e {}/{}.e.log -o {}/{}.o.log -S /bin/bash {}/foo.sh".format(currentPath+'/'+name, name, currentPath+'/'+name, name, currentPath)
     jobNum=submitJob(command)
     jobsFile.write("{}\n".format(jobNum));
 
@@ -127,7 +134,7 @@ if hostname != 'krakow':
 for step in range(beginning,steps+1):
     if hostname != 'krakow':
         print "Running {} step conditioned on {}\n".format(step, jobNum)
-        command=formCommand(queuedest, parproc, name, appendixname, configs, dialogues, step, path, errorrate)
+        command=formCommand(queuedest, parproc, name, appendixname, configs, dialogues, step, path, errorrate, currentPath)
         jobNum=submitJob(command)
         print "Submitted job {}\n".format(jobNum)
         jobsFile.write("{}\n".format(jobNum));

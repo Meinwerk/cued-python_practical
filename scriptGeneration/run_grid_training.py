@@ -39,11 +39,12 @@ def getJobNum(output):
         jobNum=jobNum.split('.')[0]
     return jobNum
 
-def formCommand(queuedest, parproc, jobNum, name, configs, dialogues, step, path, erorrrate):
+def formCommand(queuedest, parproc, jobNum, name, configs, dialogues, step, path, erorrrate, currentPath):
     #command = "qsub -q {} -e {}.e.log -o {}.o.log -t 1-{} -hold_jid {} -S /usr/bin/env {}.py {} {} {} {}".format(queuedest, name, name, parproc, jobNum, name, dialogues, step, path, errorrate)
-    command = "qsub -e {}.e.log -o {}.o.log -t 1-{} -hold_jid {} -S /usr/bin/env {}.py {} {} {} {}".format(name, name, parproc, jobNum, name, dialogues, step, path, errorrate)
+    command = "qsub -e {}/{}.e.log -o {}/{}.o.log -t 1-{} -hold_jid {} -S /usr/bin/env {}/{}.py {} {} {} {} {}".format(currentPath+'/'+name, name, currentPath+'/'+name, name, parproc, jobNum, currentPath+'/'+name, name, dialogues, step, path, errorrate, currentPath+'/'+name)
     for config in configs:
         command = command+" "+config
+
     return command
 
 def submitJob(command):
@@ -87,17 +88,25 @@ while i<len(sys.argv):
     configs.append(sys.argv[i])
     i+=1
 
+
+currentPath = os.getcwd()
+currentPath = currentPath.replace('/export/home/mlsalt-helpers/','/home/')
+
+
 if beginning == 1:
-    command="mkdir {}".format(name)
+    command="mkdir {}/{}".format(currentPath, name)
     Execute(command)
     for config in configs:
-        command="cp {} {}".format(config,name)
+        command="cp {}/{} {}/{}".format(currentPath, config,currentPath, name)
         Execute(command)
-    command="cp grid_training.py {}/{}.py".format(name,name)
+    command="cp grid_training.py {}/{}.py".format(currentPath+'/'+name,name)
     #command="cp gridGPtrain.py {}/{}.py".format(name,name)
     Execute(command)
 else:
     print "Starting from ",beginning
+
+command = "cp foo.sh {}/".format(name)
+Execute(command)
 
 command="./{}".format(name)
 print command
@@ -113,7 +122,7 @@ if hostname != 'krakow':
     queuedest =""
 
     #command="qsub -q {} -e {}.e.log -o {}.o.log -S /bin/bash foo.sh".format(queuedest,name,name)
-    command="qsub -e {}.e.log -o {}.o.log -S /bin/bash foo.sh".format(name,name)
+    command="qsub -e {}/{}.e.log -o {}/{}.o.log -S /bin/bash {}/foo.sh".format(currentPath+'/'+name, name, currentPath+'/'+name, name, currentPath)
     jobNum=submitJob(command)
     jobsFile.write("{}\n".format(jobNum));
 
@@ -121,7 +130,7 @@ if hostname != 'krakow':
 for step in range(beginning,steps+1):
     if hostname != 'krakow':
         print "Running {} step conditioned on {}\n".format(step, jobNum)
-        command=formCommand(queuedest, parproc, jobNum, name, configs, dialogues, step, path, errorrate)
+        command=formCommand(queuedest, parproc, jobNum, name, configs, dialogues, step, path, errorrate, currentPath)
         jobNum=submitJob(command)
         print "Submitted job {}\n".format(jobNum)
         jobsFile.write("{}\n".format(jobNum));

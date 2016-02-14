@@ -146,7 +146,7 @@ def main():
 	###  General policy information
 	################################################
         bcm             = 'False' 
-        belieftype      = 'focus' #'baseline'
+        belieftype      = 'baseline' 
         useconfreq      = 'False'
         policytype_vary = ['mcc']#, 'gp']
         startwithhello  = 'True'
@@ -216,13 +216,17 @@ def main():
 
                         targetDir += 'nu_' + nu + '_epsilon_start_' + epsilon_start + '_epsilon_end_' + epsilon_end + ' kernel ' + kernel
 
+			currentPath = os.getcwd()
+			currentPath = currentPath.replace('/export/home/mlsalt-helpers/','/home/')
                         configName = targetDir
 
+                        tmpName = 'gRun'+str(ConfigCounter)
                         text = config_text( domains, root,
                                          screen_level,
                                          maxturns,
                                          bcm,
-                                         belieftype, useconfreq, policytype, startwithhello, inpolicyfile, outpolicyfile, learning,
+                                     	 belieftype, useconfreq, policytype, startwithhello, 
+				     	 currentPath+'/'+tmpName+'/'+inpolicyfile, currentPath+'/'+tmpName+'/'+outpolicyfile, learning,
                                          gamma, nu, epsilon_start, epsilon_end, maxIter, 
                                          kernel, thetafile,
                                          random, learning, scale,
@@ -235,7 +239,6 @@ def main():
 
 
                         #run_on_grid(targetDir, execDir, configName, text)
-                        tmpName = 'gRun'+str(ConfigCounter)
                         run_on_grid(tmpName, execDir, tmpName, text)
                         
                         listFile.write(tmpName + '\t' + listOutput+'\n')
@@ -258,13 +261,17 @@ def main():
 
                     targetDir += 'nu_' + nu + '_epsilon_start_' + epsilon_start + '_epsilon_end_' + epsilon_end + ' kernel ' + kernel
 
+		    currentPath = os.getcwd()
+		    currentPath = currentPath.replace('/export/home/mlsalt-helpers/','/home/')
                     configName = targetDir
 
+                    tmpName = 'gRun'+str(ConfigCounter)
                     text = config_text( domains, root,
                                      screen_level,
                                      maxturns,
                                      bcm,
-                                     belieftype, useconfreq, policytype, startwithhello, inpolicyfile, outpolicyfile, learning,
+                                     belieftype, useconfreq, policytype, startwithhello, 
+				     currentPath+'/'+tmpName+'/'+inpolicyfile, currentPath+'/'+tmpName+'/'+outpolicyfile, learning,
                                      gamma, nu, epsilon_start, epsilon_end, maxIter, 
                                      kernel, thetafile,
                                      random, learning, scale,
@@ -277,7 +284,6 @@ def main():
 
 
                     #run_on_grid(targetDir, execDir, configName, text)
-                    tmpName = 'gRun'+str(ConfigCounter)
                     run_on_grid(tmpName, execDir, tmpName, text)
                     
                     listFile.write(tmpName + '\t' + listOutput+'\n')
