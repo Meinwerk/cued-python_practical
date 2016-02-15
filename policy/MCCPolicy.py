@@ -251,20 +251,22 @@ class MCCPolicy(Policy.Policy):
                 
                 # your code here...
                 # add (b,a) with Q=Return and N=1.0
-                pass
+                self.dictionary[DataPoint(b,a)]= DataPointValue(r, 1.0)
 
             elif closestDP is None or closestValue > self.nu:
                 logger.debug('adding new point')
                 
                 # your code here...
                 # add (b,a) with Q=Return and N=1.0
-                pass
-           
+                self.dictionary[DataPoint(b,a)]= DataPointValue(r, 1.0)
             else:
                 logger.debug('updating Q & N of the grid point')
                 # your code here...
                 # update Q and N with monte carlo algorithm
-                pass
+                currDpv = self.dictionary[DataPoint(b,a)]
+                newN = currDpv.N + 1.0
+                newQ = 1.0*(currDpv.Q*currDpv.N + r) / newN
+                self.dictionary[DataPoint(b,a)]= DataPointValue(newQ, newN)
 
         # reset episodic data to None
         self.data_b = None 
