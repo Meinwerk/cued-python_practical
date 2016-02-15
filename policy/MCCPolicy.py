@@ -263,9 +263,9 @@ class MCCPolicy(Policy.Policy):
                 logger.debug('updating Q & N of the grid point')
                 # your code here...
                 # update Q and N with monte carlo algorithm
-                currDpv = self.dictionary[DataPoint(b,a)]
-                newN = currDpv.N + 1.0
-                newQ = 1.0*(currDpv.Q*currDpv.N + r) / newN
+                currValue = self.dictionary[DataPoint(b,a)]
+                newN = currValue.N + 1.0
+                newQ = 1.0*(currValue.Q*currValue.N + r) / newN
                 self.dictionary[DataPoint(b,a)]= DataPointValue(newQ, newN)
 
         # reset episodic data to None
@@ -360,7 +360,7 @@ class MCCPolicy(Policy.Policy):
 
             # your code here...
             # choose the action index with the highest corresponding Q given a belief b
-            action = 0 # modify it
+            action = max(admissible, key=lambda a: self.findClosest(flat_belief, a)[1].Q)
 
         return action_names[action], action
 
