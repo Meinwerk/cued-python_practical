@@ -114,9 +114,11 @@ def run_on_grid(targetDir, execDir, configName, text):
     ################################################
     ### config file
     ################################################
-    config = '/home/dial/phs26/MPhil_practical/gridSearch_script_test/configures/' + configName + '.cfg'
+    #config = '/home/dial/phs26/MPhil_practical/gridSearch_script_test/configures/' + configName + '.cfg'
+    config = '/home/fl350/cued-python_practical/config/' + configName + '.cfg'
     # if directory not exist, then creat one
-    config_dir = '/home/dial/phs26/MPhil_practical/gridSearch_script_test/configures/'
+    #config_dir = '/home/dial/phs26/MPhil_practical/gridSearch_script_test/configures/'
+    config_dir = '/home/fl350/cued-python_practical/config/'
     if not os.path.exists(config_dir):
         os.makedirs(config_dir)
     
@@ -138,7 +140,8 @@ def main():
 	###  Domain information
 	################################################
         domains          = 'TT'
-        root            = '/home/dial/phs26/MPhil_practical/cued-python_practical/'
+        #root            = '/home/dial/phs26/MPhil_practical/cued-python_practical/'
+        root            = '/home/fl350/cued-python_practical/'
         screen_level    = 'info'
         maxturns        = '30'
 
