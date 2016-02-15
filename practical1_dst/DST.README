@@ -18,7 +18,7 @@ practical1_dst/
 
 *** Running and evaluating the trackers ***
 
-Under the directory: 
+Under the directory:
     cued-python_practical/practical1_dst/
 
 - run baseline tracker:
@@ -29,7 +29,7 @@ python scripts/baseline.py --dataset dstc2_data --dataroot data --trackfile base
 
 python scripts/baseline.py --dataset dstc2_data --dataroot data --trackfile baseline.json --focus True
 
-This will create a file baseline.json with a tracker output object. 
+This will create a file baseline.json with a tracker output object.
 
 
 
@@ -45,7 +45,7 @@ This creates a file baseline.score.csv which lists all the metrics interested.
 
 python scripts/report.py --scorefile baseline.score.csv
 
-This prints out several tables, including the featured metrics table. 
+This prints out several tables, including the featured metrics table.
 The following table is the result of baseline tracker.
 
                                     featured metrics
@@ -71,6 +71,15 @@ roc.v2_ca05   |    0.0000000    |    0.0027100    |        -       |
 
 Complete the focus dialogue state tracker and compare its performance with the baseline tracker on the provided partial DSTC2 dataset (show only the featured metrics result).
 Show up to 20 lines of the code relating to the parameter update of the focus tracker.
+
+                                    featured metrics
+--------------------------------------------------------------------
+              |   Joint Goals   |    Requested    |      Method    |
+--------------------------------------------------------------------
+Accuracy      |    0.7323162    |    0.9162437    |    0.5492372   |
+l2            |    0.4212595    |    0.1194034    |    0.7911165   |
+roc.v2_ca05   |    0.0000000    |    0.5623269    |    0.0000000   |
+
 
 Please implement in the starter code: baseline.py, where section TODO is labelled.
 
