@@ -97,7 +97,7 @@ if beginning == 1:
     command="mkdir {}/{}".format(currentPath, name)
     Execute(command)
     for config in configs:
-        command="cp {}/{} {}/{}".format(currentPath, config,currentPath, name)
+        command="cp {} {}/{}".format(config,currentPath, name)
         Execute(command)
     command="cp grid_training.py {}/{}.py".format(currentPath+'/'+name,name)
     #command="cp gridGPtrain.py {}/{}.py".format(name,name)
