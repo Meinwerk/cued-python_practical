@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Tell git to ignore these files
 *.pyc
 .idea
