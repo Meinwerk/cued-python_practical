@@ -589,9 +589,12 @@ class GPSARSA(GPSARSAPrior):
         # Follow the description of the GP-SARSA in the practical note.     #
         #####################################################################
 
-        # HINT: use functions self.k_tilda, class kernel.Kernel and kernel.ActionKernel
+        # HINT: use functions self.k_tilda for current k_tilda
+        #           class kernel.Kernel and kernel.ActionKernel for current_kernel calculation
 
         # your code here...
+        
+        k_tilda_new = self.k_tilda(state, action, kernel)
 
         g_new = []
         if self.terminal:
@@ -601,13 +604,12 @@ class GPSARSA(GPSARSAPrior):
             pass
 
         # your code here... modify current_kernel and estimate_kernel
-        current_kernel = 0.0 
-        estimate_kernel = 0.0 
+        current_kernel = 0.0    # simply the product of kernel.Kernel and kernel.ActionKernel
+        estimate_kernel = 0.0   
         delta_new = 0.0 if self.terminal else (current_kernel - estimate_kernel)
 
         ## END TODO ##
        
-        k_tilda_new = self.k_tilda(state, action, kernel)
         _a_new = g_new
 
 
