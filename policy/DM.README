@@ -17,6 +17,9 @@ cued−python practical/
         script ∗.py     # generate training/testing 
         script run grid ∗.py # run grid training/testing .py 
         grid ∗.py       # run simulate.py
+    thetaFile/
+        linearKernel    # linear kernel param
+        gaussKernel     # gaussian kernel param
 
 *** Training and evaluating the policy with a simulated user ***
 
