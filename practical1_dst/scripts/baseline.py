@@ -384,12 +384,12 @@ class FocusTracker(object):
             # clip the score
             hyps["requested-slots"][slot] = clip(p)
         # ----------------------- #
-
+        hyps["discourseAct-labels"] = normalise_dict(discourseAct_stats)
         self.hyps = hyps
         return self.hyps
 
     def reset(self):
-        self.hyps = {"goal-labels":{},"method-label":{}, "requested-slots":{}}
+        self.hyps = {"goal-labels":{},"method-label":{}, "requested-slots":{}, "discourseAct-labels":{}}
 
 
 def clip(x) :

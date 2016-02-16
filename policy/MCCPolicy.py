@@ -360,7 +360,11 @@ class MCCPolicy(Policy.Policy):
 
             # your code here...
             # choose the action index with the highest corresponding Q given a belief b
-            action = max(admissible, key=lambda a: self.dictionary[self.findClosest(flat_belief, a)[0]].Q)
+            dp, dpv = self.findClosest(flat_belief, a)
+            if dp:
+                action = max(admissible, key=lambda a: self.dictionary[dp].Q)
+            else:
+                action = random.choice(admissible)
 
         return action_names[action], action
 
