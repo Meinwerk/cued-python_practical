@@ -602,6 +602,7 @@ class GPSARSA(GPSARSAPrior):
         else:
             # your code here...
             pass
+            g_new = np.zeros(len(self._dictionary)) # change it
 
         # your code here... modify current_kernel and estimate_kernel
         current_kernel = 0.0    # simply the product of kernel.Kernel and kernel.ActionKernel
