@@ -266,6 +266,10 @@ class DMan:
                 self.bayesianCommitteeDecision(nonExecutableActions)
             else:
                 self.summaryAct = self.policy.nextAction(self.beliefs.prevbelief,nonExecutableActions)
+
+            if type(self.summaryAct) == int:
+                self.summaryAct = self.actions.action_names[self.summaryAct]
+
             systemAct = self.actions.Convert(self.beliefs.prevbelief,self.summaryAct,self.lastSystemAction)
             self.lastSystemAction = systemAct
 
