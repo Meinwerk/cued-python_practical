@@ -10,3 +10,7 @@ _build
 .gitignore
 _gptraining/
 _*
+*.pyc
+*.json
+*.csv
+venv/

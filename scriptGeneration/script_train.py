@@ -130,7 +130,7 @@ def run_on_grid(targetDir, execDir, configName, text):
     runStr = 'running ' + config
     print '{0:*^60}'.format(runStr);
 
-    command = 'python run_grid_training.py ' + targetDir + ' 10 200 1 ' + execDir + ' 15 1 ' + config
+    command = 'python run_grid_training.py ' + targetDir + ' 10 100 1 ' + execDir + ' 15 1 ' + config
     os.system(command)
 
 
@@ -149,7 +149,7 @@ def main():
 	###  General policy information
 	################################################
         bcm             = 'False' 
-        belieftype      = 'baseline' 
+        belieftype      = 'focus' 
         useconfreq      = 'False'
         policytype_vary = ['mcc']#, 'gp']
         startwithhello  = 'True'
