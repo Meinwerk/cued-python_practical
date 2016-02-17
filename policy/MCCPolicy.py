@@ -251,21 +251,21 @@ class MCCPolicy(Policy.Policy):
                 
                 # your code here...
                 # add (b,a) with Q=Return and N=1.0
-                self.dictionary[DataPoint(b,a)]= DataPointValue(r, 1.0)
+                self.dictionary[DataPoint(b,a)] = DataPointValue(Return, 1.0)
 
             elif closestDP is None or closestValue > self.nu:
                 logger.debug('adding new point')
                 
                 # your code here...
                 # add (b,a) with Q=Return and N=1.0
-                self.dictionary[DataPoint(b,a)] = DataPointValue(r, 1.0)
+                self.dictionary[DataPoint(b,a)] = DataPointValue(Return, 1.0)
             else:
                 logger.debug('updating Q & N of the grid point')
                 # your code here...
                 # update Q and N with monte carlo algorithm
                 currValue = self.dictionary[closestDP]
                 newN = currValue.N + 1.0
-                newQ = 1.0*(currValue.Q*currValue.N + r) / newN
+                newQ = (currValue.Q*currValue.N + Return) / newN
                 self.dictionary[closestDP]= DataPointValue(newQ, newN)
 
         # reset episodic data to None
@@ -360,11 +360,11 @@ class MCCPolicy(Policy.Policy):
 
             # your code here...
             # choose the action index with the highest corresponding Q given a belief b
-            dp, dpv = self.findClosest(flat_belief, a)
-            if dp:
-                action = max(admissible, key=lambda a: self.dictionary[dp].Q)
+
+            if any(map(lambda a: self.findClosest(flat_belief, a)[0] is None, admissible)):
+                action = Settings.random.choice(admissible)
             else:
-                action = random.choice(admissible)
+                action = max(admissible, key=lambda a: self.dictionary[self.findClosest(flat_belief, a)[0]].Q)
 
         return action_names[action], action
 
