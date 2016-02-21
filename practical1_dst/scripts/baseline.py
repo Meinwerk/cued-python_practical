@@ -389,7 +389,7 @@ class FocusTracker(object):
         return self.hyps
 
     def reset(self):
-        self.hyps = {"goal-labels":{},"method-label":{}, "requested-slots":{}, "discourseAct-labels":{}}
+        self.hyps = {"goal-labels":{}, "goal-labels-joint":[], "requested-slots":{}, "method-label":{}, "discourseAct-labels":{}}
 
 
 def clip(x) :

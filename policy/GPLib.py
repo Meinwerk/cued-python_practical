@@ -601,12 +601,11 @@ class GPSARSA(GPSARSAPrior):
             g_new = np.zeros(len(self._dictionary))
         else:
             # your code here...
-            pass
-            g_new = np.dot(self._K_tilda_inv,self.k_tilda)
+            g_new = np.dot(self._K_tilda_inv,k_tilda_new)
 
         # your code here... modify current_kernel and estimate_kernel
-        current_kernel = kernel.Kernel(pstate,pstate)*kernel.ActionKernel(paction,paction)    # simply the product of kernel.Kernel and kernel.ActionKernel
-        estimate_kernel = np.dot(self.k_tilda, g_new)
+        current_kernel = kernel.Kernel(state,state)*kernel.ActionKernel(action,action)    # simply the product of kernel.Kernel and kernel.ActionKernel
+        estimate_kernel = np.dot(k_tilda_new, g_new)
         delta_new = 0.0 if self.terminal else (current_kernel - estimate_kernel)
 
         ## END TODO ##

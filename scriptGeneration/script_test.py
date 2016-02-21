@@ -151,7 +151,7 @@ def main():
         bcm             = 'False' 
         belieftype      = 'focus' 
         useconfreq      = 'False'
-        policytype_vary = ['mcc']#, 'gp']
+        policytype_vary = ['gp']
         startwithhello  = 'True'
         inpolicyfile    = 'policyFile'
         outpolicyfile   = 'policyFile'
@@ -161,7 +161,7 @@ def main():
 	###  MCC policy training options
 	################################################
         gamma               = '1.0'
-        nu_vary             = ['0.001', '0.005', '0.01', '0.05', '0.1']
+        nu_vary             = ['0.01']
         epsilon_pair        = [('1.0', '0.1')]#, ('1.0','0.5')]
         maxIter             = '2000'
 
