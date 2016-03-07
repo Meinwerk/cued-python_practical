@@ -171,7 +171,14 @@ def main():
         #kernel = 'polysort'                 # 'gausssort'
         #theta = 'thetaFile/linearKernel'    # 'thetaFile/gaussKernel'
 
-        kernel_theta_pair = [('polysort',root+'thetaFile/linearKernel'), ('gausssort',root+'thetaFile/gaussKernel')]
+        #kernel_theta_pair = [('polysort',root+'thetaFile/linearKernel'), ('gausssort',root+'thetaFile/gaussKernel')]
+        kernel_theta_pair = [('polysort',root+'thetaFile/linearKernel')] + \
+                [('gausssort',root+'thetaFile/gaussKernel-p-{0}-l-{1}'.format(p, l))
+                    for p in range(2,5)
+                    for l in range(2,4)]
+        kernel_theta_pair *=  5 # 5 trials
+        #kernel_theta_pair = kernel_theta_pair[:5]
+        kernel_theta_pair = kernel_theta_pair[5:10]
 
         random = 'False'
         learning = 'False'

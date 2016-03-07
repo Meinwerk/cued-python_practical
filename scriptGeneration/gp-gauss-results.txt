@@ -1,0 +1,191 @@
+
+***********************
+usage:
+arguments: python parseResults.py dirPrefix fileNamePrefix fileNameSuffix numOfGridSearch [TEST]
+
+example:
+training results: python parseResults.py gRun tra_1_ .log 1
+testing  results: python parseResults.py gRun tra_1_ .log 1 TEST
+
+***********************
+
+------------gRun0-------------
+gRun0_TEST/tra_1_1.log
+gRun0_TEST/tra_1_2.log
+gRun0_TEST/tra_1_3.log
+gRun0_TEST/tra_1_4.log
+gRun0_TEST/tra_1_5.log
+gRun0_TEST/tra_1_6.log
+gRun0_TEST/tra_1_7.log
+gRun0_TEST/tra_1_8.log
+gRun0_TEST/tra_1_9.log
+gRun0_TEST/tra_1_10.log
+ITER	num	1    	2    	3    	4    	5    	6    	7    	8    	9    	10   	
+REWARD	avg	1.2  	5.25 	4.35 	7.14 	5.51 	4.72 	7.32 	5.31 	6.32 	4.47 	
+REWARD	std	1.93 	1.89 	1.91 	1.74 	1.72 	2.0  	1.86 	1.94 	1.77 	1.91 	
+SUCCESS	avg	36.0 	60.0 	57.0 	74.0 	67.0 	59.0 	74.0 	67.0 	73.0 	63.0 	
+SUCCESS	std	9.41 	9.6  	9.7  	8.6  	9.22 	9.64 	8.6  	9.22 	8.7  	9.46 	
+TURNS	avg	6.0  	6.75 	7.05 	7.66 	7.89 	7.08 	7.48 	8.09 	8.28 	8.13 	
+TURNS	std	0.53 	0.56 	0.67 	0.81 	0.84 	0.6  	0.66 	0.92 	0.86 	0.79 	
+------------gRun1-------------
+gRun1_TEST/tra_1_1.log
+gRun1_TEST/tra_1_2.log
+gRun1_TEST/tra_1_3.log
+gRun1_TEST/tra_1_4.log
+gRun1_TEST/tra_1_5.log
+gRun1_TEST/tra_1_6.log
+gRun1_TEST/tra_1_7.log
+gRun1_TEST/tra_1_8.log
+gRun1_TEST/tra_1_9.log
+gRun1_TEST/tra_1_10.log
+ITER	num	1    	2    	3    	4    	5    	6    	7    	8    	9    	10   	
+REWARD	avg	2.78 	6.33 	5.04 	7.46 	5.76 	6.15 	7.51 	6.26 	7.21 	6.78 	
+REWARD	std	2.12 	2.0  	2.12 	1.92 	2.08 	1.84 	1.7  	1.95 	1.79 	2.06 	
+SUCCESS	avg	46.0 	65.0 	62.0 	69.0 	64.0 	68.0 	75.0 	68.0 	72.0 	72.0 	
+SUCCESS	std	9.77 	9.35 	9.51 	9.06 	9.41 	9.14 	8.49 	9.14 	8.8  	8.8  	
+TURNS	avg	6.42 	6.67 	7.36 	6.34 	7.04 	7.45 	7.49 	7.34 	7.19 	7.62 	
+TURNS	std	0.81 	0.71 	0.86 	0.65 	0.91 	0.79 	0.9  	0.77 	0.77 	1.06 	
+------------gRun2-------------
+gRun2_TEST/tra_1_1.log
+gRun2_TEST/tra_1_2.log
+gRun2_TEST/tra_1_3.log
+gRun2_TEST/tra_1_4.log
+gRun2_TEST/tra_1_5.log
+gRun2_TEST/tra_1_6.log
+gRun2_TEST/tra_1_7.log
+gRun2_TEST/tra_1_8.log
+gRun2_TEST/tra_1_9.log
+gRun2_TEST/tra_1_10.log
+ITER	num	1    	2    	3    	4    	5    	6    	7    	8    	9    	10   	
+REWARD	avg	5.08 	4.76 	3.82 	6.08 	5.46 	6.3  	6.02 	6.02 	7.41 	7.06 	
+REWARD	std	1.9  	1.91 	1.92 	1.86 	1.81 	1.99 	1.73 	1.91 	1.64 	1.72 	
+SUCCESS	avg	60.0 	61.0 	57.0 	69.0 	64.0 	72.0 	74.0 	69.0 	75.0 	73.0 	
+SUCCESS	std	9.6  	9.56 	9.7  	9.06 	9.41 	8.8  	8.6  	9.06 	8.49 	8.7  	
+TURNS	avg	6.92 	7.44 	7.58 	7.72 	7.34 	8.1  	8.78 	7.78 	7.59 	7.54 	
+TURNS	std	0.77 	0.72 	0.77 	0.77 	0.77 	0.92 	1.03 	0.83 	0.77 	0.59 	
+------------gRun3-------------
+gRun3_TEST/tra_1_1.log
+gRun3_TEST/tra_1_2.log
+gRun3_TEST/tra_1_3.log
+gRun3_TEST/tra_1_4.log
+gRun3_TEST/tra_1_5.log
+gRun3_TEST/tra_1_6.log
+gRun3_TEST/tra_1_7.log
+gRun3_TEST/tra_1_8.log
+gRun3_TEST/tra_1_9.log
+gRun3_TEST/tra_1_10.log
+ITER	num	1    	2    	3    	4    	5    	6    	7    	8    	9    	10   	
+REWARD	avg	2.24 	5.9  	5.19 	5.65 	6.28 	6.0  	6.68 	7.37 	6.45 	6.77 	
+REWARD	std	2.02 	1.99 	1.91 	2.03 	1.82 	1.89 	1.85 	1.65 	1.79 	1.81 	
+SUCCESS	avg	47.0 	64.0 	62.0 	65.0 	69.0 	67.0 	70.0 	75.0 	70.0 	70.0 	
+SUCCESS	std	9.78 	9.41 	9.51 	9.35 	9.06 	9.22 	8.98 	8.49 	8.98 	8.98 	
+TURNS	avg	7.16 	6.9  	7.21 	7.35 	7.52 	7.4  	7.32 	7.63 	7.55 	7.23 	
+TURNS	std	0.66 	0.57 	0.59 	0.74 	0.64 	0.53 	0.79 	0.66 	0.61 	0.65 	
+------------gRun4-------------
+gRun4_TEST/tra_1_1.log
+gRun4_TEST/tra_1_2.log
+gRun4_TEST/tra_1_3.log
+gRun4_TEST/tra_1_4.log
+gRun4_TEST/tra_1_5.log
+gRun4_TEST/tra_1_6.log
+gRun4_TEST/tra_1_7.log
+gRun4_TEST/tra_1_8.log
+gRun4_TEST/tra_1_9.log
+gRun4_TEST/tra_1_10.log
+ITER	num	1    	2    	3    	4    	5    	6    	7    	8    	9    	10   	
+REWARD	avg	0.18 	2.15 	5.63 	4.69 	4.82 	4.02 	6.89 	5.69 	4.45 	5.6  	
+REWARD	std	2.1  	1.95 	1.76 	1.99 	2.01 	2.03 	1.73 	1.88 	1.87 	1.93 	
+SUCCESS	avg	52.0 	53.0 	67.0 	63.0 	61.0 	55.0 	67.0 	67.0 	58.0 	64.0 	
+SUCCESS	std	9.79 	9.78 	9.22 	9.46 	9.56 	9.75 	9.22 	9.22 	9.67 	9.41 	
+TURNS	avg	10.22	8.45 	7.77 	7.91 	7.38 	6.98 	6.51 	7.71 	7.15 	7.2  	
+TURNS	std	1.06 	0.69 	0.74 	0.63 	0.73 	0.6  	0.58 	0.73 	0.76 	0.69 	
+------------gRun5-------------
+gRun5_TEST/tra_1_1.log
+gRun5_TEST/tra_1_2.log
+gRun5_TEST/tra_1_3.log
+gRun5_TEST/tra_1_4.log
+gRun5_TEST/tra_1_5.log
+gRun5_TEST/tra_1_6.log
+gRun5_TEST/tra_1_7.log
+gRun5_TEST/tra_1_8.log
+gRun5_TEST/tra_1_9.log
+gRun5_TEST/tra_1_10.log
+ITER	num	1    	2    	3    	4    	5    	6    	7    	8    	9    	10   	
+REWARD	avg	4.26 	3.46 	3.84 	6.19 	6.73 	6.01 	5.73 	4.94 	3.68 	6.95 	
+REWARD	std	1.94 	1.98 	2.06 	1.94 	1.69 	1.89 	1.83 	1.79 	1.91 	1.87 	
+SUCCESS	avg	60.0 	57.0 	62.0 	70.0 	72.0 	72.0 	69.0 	67.0 	60.0 	80.0 	
+SUCCESS	std	9.6  	9.7  	9.51 	8.98 	8.8  	8.8  	9.06 	9.22 	9.6  	7.84 	
+TURNS	avg	7.74 	7.94 	8.56 	7.81 	7.67 	8.39 	8.07 	8.46 	8.32 	9.05 	
+TURNS	std	0.81 	0.67 	0.96 	0.81 	0.81 	0.9  	0.95 	0.85 	0.8  	1.12 	
+------------gRun6-------------
+gRun6_TEST/tra_1_1.log
+gRun6_TEST/tra_1_2.log
+gRun6_TEST/tra_1_3.log
+gRun6_TEST/tra_1_4.log
+gRun6_TEST/tra_1_5.log
+gRun6_TEST/tra_1_6.log
+gRun6_TEST/tra_1_7.log
+gRun6_TEST/tra_1_8.log
+gRun6_TEST/tra_1_9.log
+gRun6_TEST/tra_1_10.log
+ITER	num	1    	2    	3    	4    	5    	6    	7    	8    	9    	10   	
+REWARD	avg	0.29 	1.01 	3.82 	5.03 	3.98 	5.91 	6.53 	5.75 	6.37 	7.29 	
+REWARD	std	2.18 	2.27 	2.05 	2.14 	1.84 	1.75 	1.86 	2.07 	1.81 	1.66 	
+SUCCESS	avg	46.0 	59.0 	60.0 	69.0 	61.0 	68.0 	74.0 	69.0 	71.0 	74.0 	
+SUCCESS	std	9.77 	9.64 	9.6  	9.06 	9.56 	9.14 	8.6  	9.06 	8.89 	8.6  	
+TURNS	avg	8.91 	10.79	8.18 	8.77 	8.22 	7.69 	8.27 	8.05 	7.83 	7.51 	
+TURNS	std	0.98 	1.03 	0.82 	0.91 	1.0  	0.72 	0.78 	0.78 	0.71 	0.69 	
+------------gRun7-------------
+gRun7_TEST/tra_1_1.log
+gRun7_TEST/tra_1_2.log
+gRun7_TEST/tra_1_3.log
+gRun7_TEST/tra_1_4.log
+gRun7_TEST/tra_1_5.log
+gRun7_TEST/tra_1_6.log
+gRun7_TEST/tra_1_7.log
+gRun7_TEST/tra_1_8.log
+gRun7_TEST/tra_1_9.log
+gRun7_TEST/tra_1_10.log
+ITER	num	1    	2    	3    	4    	5    	6    	7    	8    	9    	10   	
+REWARD	avg	1.03 	4.0  	4.54 	4.23 	5.23 	5.52 	3.93 	5.21 	4.34 	5.94 	
+REWARD	std	2.14 	1.87 	1.99 	2.01 	1.97 	1.87 	2.46 	2.06 	2.03 	1.78 	
+SUCCESS	avg	46.0 	64.0 	63.0 	66.0 	71.0 	74.0 	66.0 	66.0 	62.0 	71.0 	
+SUCCESS	std	9.77 	9.41 	9.46 	9.28 	8.89 	8.6  	9.28 	9.28 	9.51 	8.89 	
+TURNS	avg	8.17 	8.8  	8.06 	8.97 	8.97 	9.28 	9.27 	7.99 	8.06 	8.26 	
+TURNS	std	0.71 	0.77 	0.91 	0.96 	1.08 	0.95 	1.26 	0.86 	0.97 	1.01 	
+------------gRun8-------------
+gRun8_TEST/tra_1_1.log
+gRun8_TEST/tra_1_2.log
+gRun8_TEST/tra_1_3.log
+gRun8_TEST/tra_1_4.log
+gRun8_TEST/tra_1_5.log
+gRun8_TEST/tra_1_6.log
+gRun8_TEST/tra_1_7.log
+gRun8_TEST/tra_1_8.log
+gRun8_TEST/tra_1_9.log
+gRun8_TEST/tra_1_10.log
+ITER	num	1    	2    	3    	4    	5    	6    	7    	8    	9    	10   	
+REWARD	avg	-1.91	-2.08	3.37 	3.74 	1.66 	5.95 	6.6  	5.68 	6.75 	5.49 	
+REWARD	std	2.23 	1.95 	2.07 	2.09 	1.92 	1.76 	1.79 	1.88 	1.81 	1.88 	
+SUCCESS	avg	42.0 	40.0 	60.0 	59.0 	47.0 	68.0 	66.0 	69.0 	74.0 	63.0 	
+SUCCESS	std	9.67 	9.6  	9.6  	9.64 	9.78 	9.14 	9.28 	9.06 	8.6  	9.46 	
+TURNS	avg	10.31	10.08	8.63 	8.06 	7.74 	7.65 	6.6  	8.12 	8.05 	7.11 	
+TURNS	std	1.09 	1.14 	0.89 	0.89 	0.88 	0.67 	0.6  	0.77 	0.8  	0.74 	
+------------gRun9-------------
+gRun9_TEST/tra_1_1.log
+gRun9_TEST/tra_1_2.log
+gRun9_TEST/tra_1_3.log
+gRun9_TEST/tra_1_4.log
+gRun9_TEST/tra_1_5.log
+gRun9_TEST/tra_1_6.log
+gRun9_TEST/tra_1_7.log
+gRun9_TEST/tra_1_8.log
+gRun9_TEST/tra_1_9.log
+gRun9_TEST/tra_1_10.log
+ITER	num	1    	2    	3    	4    	5    	6    	7    	8    	9    	10   	
+REWARD	avg	4.08 	2.12 	4.93 	6.0  	5.93 	5.35 	5.09 	6.68 	5.08 	5.55 	
+REWARD	std	1.9  	1.98 	1.95 	1.91 	1.8  	1.88 	1.95 	1.87 	1.87 	1.86 	
+SUCCESS	avg	62.0 	52.0 	65.0 	71.0 	72.0 	68.0 	65.0 	75.0 	69.0 	67.0 	
+SUCCESS	std	9.51 	9.79 	9.35 	8.89 	8.8  	9.14 	9.35 	8.49 	9.06 	9.22 	
+TURNS	avg	8.32 	8.28 	8.07 	8.2  	8.47 	8.25 	7.91 	8.32 	8.72 	7.85 	
+TURNS	std	0.8  	0.76 	0.84 	0.69 	0.84 	0.72 	0.76 	0.84 	0.81 	0.81 	
